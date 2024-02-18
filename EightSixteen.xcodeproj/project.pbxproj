@@ -17,6 +17,7 @@
 		BA4ED2872B80E0BD0056B8F8 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4ED2862B80E0BD0056B8F8 /* AppCoordinator.swift */; };
 		BA4ED28A2B80E1280056B8F8 /* FastingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4ED2892B80E1280056B8F8 /* FastingViewController.swift */; };
 		BA4ED28C2B80E3B10056B8F8 /* FastingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4ED28B2B80E3B10056B8F8 /* FastingCoordinator.swift */; };
+		BA9B05BD2B81B0B6000B603B /* FastingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9B05BC2B81B0B6000B603B /* FastingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		BA4ED2862B80E0BD0056B8F8 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		BA4ED2892B80E1280056B8F8 /* FastingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingViewController.swift; sourceTree = "<group>"; };
 		BA4ED28B2B80E3B10056B8F8 /* FastingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingCoordinator.swift; sourceTree = "<group>"; };
+		BA9B05BC2B81B0B6000B603B /* FastingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingViewModel.swift; sourceTree = "<group>"; };
 		F2F90154FE7A4AA1E3B18F5F /* Pods-EightSixteen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EightSixteen.release.xcconfig"; path = "Target Support Files/Pods-EightSixteen/Pods-EightSixteen.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,7 +64,6 @@
 				952FCD83ED0AA362FBEBA34F /* Pods-EightSixteen.debug.xcconfig */,
 				F2F90154FE7A4AA1E3B18F5F /* Pods-EightSixteen.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -119,6 +120,7 @@
 		BA4ED2802B80B6650056B8F8 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				BA9B05BC2B81B0B6000B603B /* FastingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -272,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA4ED28A2B80E1280056B8F8 /* FastingViewController.swift in Sources */,
+				BA9B05BD2B81B0B6000B603B /* FastingViewModel.swift in Sources */,
 				BA1DF21A2B81A84B009AFB62 /* TodayIndicatorView.swift in Sources */,
 				BA4ED28C2B80E3B10056B8F8 /* FastingCoordinator.swift in Sources */,
 				BA4ED2852B80E0700056B8F8 /* Coordinator.swift in Sources */,
@@ -332,7 +335,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -395,7 +398,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
