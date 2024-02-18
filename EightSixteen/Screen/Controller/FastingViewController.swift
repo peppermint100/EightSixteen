@@ -15,6 +15,7 @@ class FastingViewController: UIViewController {
     var coordinator: FastingCoordinator?
     
     private var todayIndicator = TodayIndicatorView()
+    private var fastingCountView = FastingCountView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,16 +28,25 @@ class FastingViewController: UIViewController {
     }
     
     func bindViewModel(viewModel: FastingViewModel) {
-        todayIndicator.bindDate(dateObservable: viewModel.dateSubject)
+        todayIndicator.bindDate(viewModel.dateSubject)
+        fastingCountView.bindFastingCount(viewModel.fastingCount)
     }
     
     private func setupUI() {
         view.backgroundColor = .systemBackground
         view.addSubview(todayIndicator)
+        view.addSubview(fastingCountView)
+        
         todayIndicator.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(140)
+        }
+        
+        fastingCountView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(40)
+            make.top.equalTo(todayIndicator.snp.bottom).offset(30)
+            make.height.equalTo(70)
         }
     }
 }

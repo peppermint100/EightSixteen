@@ -18,6 +18,9 @@
 		BA4ED28A2B80E1280056B8F8 /* FastingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4ED2892B80E1280056B8F8 /* FastingViewController.swift */; };
 		BA4ED28C2B80E3B10056B8F8 /* FastingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4ED28B2B80E3B10056B8F8 /* FastingCoordinator.swift */; };
 		BA9B05BD2B81B0B6000B603B /* FastingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9B05BC2B81B0B6000B603B /* FastingViewModel.swift */; };
+		BA9B05BF2B81C5F7000B603B /* FastingCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9B05BE2B81C5F7000B603B /* FastingCountView.swift */; };
+		BA9B05C12B81C707000B603B /* Fasting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9B05C02B81C707000B603B /* Fasting.swift */; };
+		BA9B05C42B81C97D000B603B /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9B05C32B81C97D000B603B /* Date.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +38,9 @@
 		BA4ED2892B80E1280056B8F8 /* FastingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingViewController.swift; sourceTree = "<group>"; };
 		BA4ED28B2B80E3B10056B8F8 /* FastingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingCoordinator.swift; sourceTree = "<group>"; };
 		BA9B05BC2B81B0B6000B603B /* FastingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingViewModel.swift; sourceTree = "<group>"; };
+		BA9B05BE2B81C5F7000B603B /* FastingCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingCountView.swift; sourceTree = "<group>"; };
+		BA9B05C02B81C707000B603B /* Fasting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fasting.swift; sourceTree = "<group>"; };
+		BA9B05C32B81C97D000B603B /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		F2F90154FE7A4AA1E3B18F5F /* Pods-EightSixteen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EightSixteen.release.xcconfig"; path = "Target Support Files/Pods-EightSixteen/Pods-EightSixteen.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +104,7 @@
 		BA4ED26A2B80B00E0056B8F8 /* EightSixteen */ = {
 			isa = PBXGroup;
 			children = (
+				BA9B05C22B81C971000B603B /* Extension */,
 				BA1DF2182B81A824009AFB62 /* Screen */,
 				BA4ED2822B80DF300056B8F8 /* Resource */,
 				BA4ED2812B80B6690056B8F8 /* View */,
@@ -113,6 +120,7 @@
 		BA4ED27F2B80B64D0056B8F8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BA9B05C02B81C707000B603B /* Fasting.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -129,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				BA1DF2192B81A84B009AFB62 /* TodayIndicatorView.swift */,
+				BA9B05BE2B81C5F7000B603B /* FastingCountView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -157,6 +166,14 @@
 				BA4ED2892B80E1280056B8F8 /* FastingViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		BA9B05C22B81C971000B603B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BA9B05C32B81C97D000B603B /* Date.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,10 +292,13 @@
 			files = (
 				BA4ED28A2B80E1280056B8F8 /* FastingViewController.swift in Sources */,
 				BA9B05BD2B81B0B6000B603B /* FastingViewModel.swift in Sources */,
+				BA9B05BF2B81C5F7000B603B /* FastingCountView.swift in Sources */,
 				BA1DF21A2B81A84B009AFB62 /* TodayIndicatorView.swift in Sources */,
 				BA4ED28C2B80E3B10056B8F8 /* FastingCoordinator.swift in Sources */,
 				BA4ED2852B80E0700056B8F8 /* Coordinator.swift in Sources */,
+				BA9B05C12B81C707000B603B /* Fasting.swift in Sources */,
 				BA4ED2872B80E0BD0056B8F8 /* AppCoordinator.swift in Sources */,
+				BA9B05C42B81C97D000B603B /* Date.swift in Sources */,
 				BA4ED26C2B80B00E0056B8F8 /* AppDelegate.swift in Sources */,
 				BA4ED26E2B80B00E0056B8F8 /* SceneDelegate.swift in Sources */,
 			);

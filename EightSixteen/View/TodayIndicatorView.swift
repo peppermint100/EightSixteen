@@ -31,7 +31,7 @@ class TodayIndicatorView: UIStackView {
     private let dayOfWeekLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 26, weight: .bold)
+        label.font = .systemFont(ofSize: 26, weight: .semibold)
         label.numberOfLines = 1
         label.textColor = .label
         return label
@@ -50,7 +50,7 @@ class TodayIndicatorView: UIStackView {
         fatalError()
     }
     
-    func bindDate(dateObservable: Observable<Date>) {
+    func bindDate(_ dateObservable: Observable<Date>) {
         let disposeBag = DisposeBag()
         let calendar = Calendar.current
         let dateFormatter = DateFormatter()

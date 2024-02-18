@@ -7,7 +7,18 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 class FastingViewModel {
-    var dateSubject = BehaviorSubject(value: Date())
+    private let now = Date()
+    private var fasting: Fasting
+    
+    var dateSubject: BehaviorSubject<Date>
+    var fastingCount: Driver<Int>
+    
+    init() {
+        self.fasting = Fasting()
+        self.dateSubject = BehaviorSubject(value: now)
+        self.fastingCount = Driver.just(now.daysBetween(fasting.startedAt))
+    }
 }
