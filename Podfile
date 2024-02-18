@@ -6,4 +6,7 @@ target 'EightSixteen' do
   use_frameworks!
   # Pods for EightSixteen
   pod 'SnapKit', '~> 5.0.0'
+  pod 'RxSwift', '6.2.0'
+  pod 'RxCocoa'
+  pod 'Action'
 end
