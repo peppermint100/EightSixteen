@@ -50,8 +50,7 @@ class TodayIndicatorView: UIStackView {
         fatalError()
     }
     
-    func bindDate(_ dateObservable: Observable<Date>) {
-        let disposeBag = DisposeBag()
+    func bindDate(_ dateObservable: Observable<Date>, disposeBag: DisposeBag) {
         let calendar = Calendar.current
         let dateFormatter = DateFormatter()
         

@@ -36,8 +36,7 @@ class FastingCountView: UIView {
         fatalError()
     }
     
-    func bindFastingCount(_ fastingCount: Driver<Int>) {
-        let disposeBag = DisposeBag()
+    func bindFastingCount(_ fastingCount: Driver<Int>, disposeBag: DisposeBag) {
         fastingCount.map { count in
             return "현재 \(count)일째 단식"
         }.drive(fastingCountLabel.rx.text)

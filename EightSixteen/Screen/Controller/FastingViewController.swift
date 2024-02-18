@@ -28,8 +28,9 @@ class FastingViewController: UIViewController {
     }
     
     func bindViewModel(viewModel: FastingViewModel) {
-        todayIndicator.bindDate(viewModel.dateSubject)
-        fastingCountView.bindFastingCount(viewModel.fastingCount)
+        let disposeBag = DisposeBag()
+        todayIndicator.bindDate(viewModel.dateSubject, disposeBag: disposeBag)
+        fastingCountView.bindFastingCount(viewModel.fastingCount, disposeBag: disposeBag)
     }
     
     private func setupUI() {
