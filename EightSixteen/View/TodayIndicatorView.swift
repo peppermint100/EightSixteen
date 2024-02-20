@@ -9,6 +9,20 @@ import UIKit
 import RxSwift
 
 class TodayIndicatorView: UIStackView {
+    private let calendar = Calendar.current
+    private let dateFormatter = DateFormatter()
+    
+    var today: Date? {
+        didSet {
+            guard let today = today else { return }
+            let month = calendar.component(.month, from: today)
+            let day = calendar.component(.day, from: today)
+            let weekDay = calendar.component(.weekday, from: today)
+            monthLabel.text = "\(month)"
+            dayLabel.text = "\(day)"
+            dayOfWeekLabel.text = "\(dateFormatter.weekdaySymbols[weekDay-1])"
+        }
+    }
     
     private let monthLabel: UILabel = {
         let label = UILabel()
@@ -48,28 +62,5 @@ class TodayIndicatorView: UIStackView {
     
     required init(coder: NSCoder) {
         fatalError()
-    }
-    
-    func bindDate(_ dateObservable: Observable<Date>, disposeBag: DisposeBag) {
-        let calendar = Calendar.current
-        let dateFormatter = DateFormatter()
-        
-        dateObservable.map { date in
-            let month = calendar.component(.month, from: date)
-            return "\(month)"
-        }.bind(to: monthLabel.rx.text)
-            .disposed(by: disposeBag)
-        
-        dateObservable.map { date in
-            let day = calendar.component(.day, from: date)
-            return "\(day)"
-        }.bind(to: dayLabel.rx.text)
-            .disposed(by: disposeBag)
-        
-        dateObservable.map { date in
-            let weekDay = calendar.component(.weekday, from: date)
-            return "\(dateFormatter.weekdaySymbols[weekDay-1])"
-        }.bind(to: dayOfWeekLabel.rx.text)
-            .disposed(by: disposeBag)
     }
 }

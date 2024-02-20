@@ -13,12 +13,12 @@ class FastingViewModel {
     private let now = Date()
     private var fasting: Fasting
     
-    var dateSubject: BehaviorSubject<Date>
-    var fastingCount: Driver<Int>
+    var dateObservable: Observable<Date>
+    var fastingCountDriver: Driver<Int>
     
     init() {
         self.fasting = Fasting()
-        self.dateSubject = BehaviorSubject(value: now)
-        self.fastingCount = Driver.just(now.daysBetween(fasting.startedAt))
+        self.dateObservable = Observable.just(now)
+        self.fastingCountDriver = Driver.just(now.daysBetween(fasting.startedAt))
     }
 }

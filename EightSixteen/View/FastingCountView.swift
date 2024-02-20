@@ -12,7 +12,7 @@ import RxCocoa
 
 class FastingCountView: UIView {
     
-    private var fastingCountLabel: UILabel = {
+    var fastingCountLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 22, weight: .semibold)
@@ -34,12 +34,5 @@ class FastingCountView: UIView {
     
     required init(coder: NSCoder) {
         fatalError()
-    }
-    
-    func bindFastingCount(_ fastingCount: Driver<Int>, disposeBag: DisposeBag) {
-        fastingCount.map { count in
-            return "현재 \(count)일째 단식"
-        }.drive(fastingCountLabel.rx.text)
-        .disposed(by: disposeBag)
     }
 }
