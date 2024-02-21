@@ -13,6 +13,7 @@ import RxCocoa
 class FastingViewController: UIViewController {
     
     var coordinator: FastingCoordinator?
+    var viewModel: FastingViewModel!
     private let disposeBag = DisposeBag()
     
     private var todayIndicator = TodayIndicatorView()
@@ -29,7 +30,7 @@ class FastingViewController: UIViewController {
         coordinator?.childDidFinish(coordinator)
     }
     
-    func bindViewModel(viewModel: FastingViewModel) {
+    func bindViewModel() {
         viewModel.dateObservable
             .bind(onNext: { [weak self] in
                 self?.todayIndicator.today = $0
