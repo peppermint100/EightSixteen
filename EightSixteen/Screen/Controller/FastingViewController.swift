@@ -18,7 +18,7 @@ class FastingViewController: UIViewController {
     
     private var todayIndicator = TodayIndicatorView()
     private var fastingCountView = FastingCountView()
-    private var fastingCircleView = FastingCircleView()
+    private var fastingCircleView = CircleGaugeView()
     
     override func viewDidLoad() {
         super.viewDidLoad()

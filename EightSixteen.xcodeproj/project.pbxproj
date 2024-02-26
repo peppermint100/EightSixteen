@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8615B5AE27579BE58696B92F /* Pods_EightSixteen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E810C733997D42B82562151 /* Pods_EightSixteen.framework */; };
+		BA1886D22B81E21B007F8166 /* CircleGaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1886D12B81E21B007F8166 /* CircleGaugeView.swift */; };
 		BA1DF21A2B81A84B009AFB62 /* TodayIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1DF2192B81A84B009AFB62 /* TodayIndicatorView.swift */; };
 		BA4ED26C2B80B00E0056B8F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4ED26B2B80B00E0056B8F8 /* AppDelegate.swift */; };
 		BA4ED26E2B80B00E0056B8F8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4ED26D2B80B00E0056B8F8 /* SceneDelegate.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		8E810C733997D42B82562151 /* Pods_EightSixteen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EightSixteen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		952FCD83ED0AA362FBEBA34F /* Pods-EightSixteen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EightSixteen.debug.xcconfig"; path = "Target Support Files/Pods-EightSixteen/Pods-EightSixteen.debug.xcconfig"; sourceTree = "<group>"; };
+		BA1886D12B81E21B007F8166 /* CircleGaugeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGaugeView.swift; sourceTree = "<group>"; };
 		BA1DF2192B81A84B009AFB62 /* TodayIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayIndicatorView.swift; sourceTree = "<group>"; };
 		BA4ED2682B80B00E0056B8F8 /* EightSixteen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EightSixteen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA4ED26B2B80B00E0056B8F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			children = (
 				BA1DF2192B81A84B009AFB62 /* TodayIndicatorView.swift */,
 				BA9B05BE2B81C5F7000B603B /* FastingCountView.swift */,
+				BA1886D12B81E21B007F8166 /* CircleGaugeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				BA4ED28C2B80E3B10056B8F8 /* FastingCoordinator.swift in Sources */,
 				BA4ED2852B80E0700056B8F8 /* Coordinator.swift in Sources */,
 				BA9B05C12B81C707000B603B /* Fasting.swift in Sources */,
+				BA1886D22B81E21B007F8166 /* CircleGaugeView.swift in Sources */,
 				BA4ED2872B80E0BD0056B8F8 /* AppCoordinator.swift in Sources */,
 				BA9B05C42B81C97D000B603B /* Date.swift in Sources */,
 				BA4ED26C2B80B00E0056B8F8 /* AppDelegate.swift in Sources */,
