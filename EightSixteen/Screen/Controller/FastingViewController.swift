@@ -23,6 +23,7 @@ class FastingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        bindViewModel()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -31,6 +32,17 @@ class FastingViewController: UIViewController {
     }
     
     func bindViewModel() {
+        let input = FastingViewModel.Input()
+        let output = viewModel.transform(input)
+        
+        output.fasting
+            .map({ ($0.fastingTimeProgressed) / $0.fastingTime })
+            .bind(onNext: { [weak self] in
+                self?.fastingCircleView.greenPathOccupationRatio = $0
+                self?.fastingCircleView.setNeedsDisplay()
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.dateObservable
             .bind(onNext: { [weak self] in
                 self?.todayIndicator.today = $0
