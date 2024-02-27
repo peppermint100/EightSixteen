@@ -10,15 +10,32 @@ import RxSwift
 import RxCocoa
 
 class FastingViewModel {
+    
+    struct Input {
+    }
+    
+    struct Output {
+        let fasting: Observable<Fasting>
+    }
+    
     private let now = Date()
-    private var fasting: Fasting
     
     var dateObservable: Observable<Date>
     var fastingCountDriver: Driver<Int>
     
     init() {
-        self.fasting = Fasting()
         self.dateObservable = Observable.just(now)
-        self.fastingCountDriver = Driver.just(now.daysBetween(fasting.startedAt))
+        self.fastingCountDriver = Driver.just(2)
+    }
+    
+    func transform(_ input: Input) -> Output {
+        var components = DateComponents()
+        components.hour = 11
+        components.minute = 30
+        let fasting = Fasting(startedAt: Calendar.current.date(from: components)!, fastingTime: TimeInterval(integerLiteral: 16 * 3600))
+        print(fasting)
+        print(fasting.endedAt)
+        print(fasting.fastingTimeRemaining)
+        return Output(fasting: Observable.just(fasting))
     }
 }

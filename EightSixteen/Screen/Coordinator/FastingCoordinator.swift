@@ -20,7 +20,6 @@ class FastingCoordinator: Coordinator {
         let viewModel = FastingViewModel()
         vc.coordinator = self
         vc.viewModel = viewModel
-        vc.bindViewModel()
         navigationController.pushViewController(vc, animated: true)
     }
 }
