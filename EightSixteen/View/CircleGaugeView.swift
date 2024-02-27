@@ -33,17 +33,31 @@ class CircleGaugeView: UIView {
          return layer
      }()
     
+    var timerLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 36, weight: .semibold)
+        label.textColor = .black
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemBackground
     }
     
     required init(coder: NSCoder) {
         fatalError()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        timerLabel.frame = bounds
+    }
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
+        addSubview(timerLabel)
+        
         let center = CGPoint(x: rect.midX, y: rect.midY)
         let radius = min(rect.width, rect.height) / 2
         

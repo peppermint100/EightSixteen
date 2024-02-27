@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import RxSwift
 
 class TodayIndicatorView: UIStackView {
     private let calendar = Calendar.current

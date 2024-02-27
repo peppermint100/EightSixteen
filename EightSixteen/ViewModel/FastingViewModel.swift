@@ -11,19 +11,14 @@ import RxCocoa
 
 class FastingViewModel {
     
+    let disposeBag = DisposeBag()
+    
     struct Input {
     }
     
     struct Output {
         let fasting: Observable<Fasting>
-    }
-    
-    private let now = Date()
-    
-    var fastingCountDriver: Driver<Int>
-    
-    init() {
-        self.fastingCountDriver = Driver.just(2)
+        let fastingTimeRemainingSeconds: BehaviorSubject<Int>
     }
     
     func transform(_ input: Input) -> Output {
@@ -31,9 +26,19 @@ class FastingViewModel {
         components.year = 2024
         components.month = 2
         components.day = 26
-        components.hour = 11
-        components.minute = 30
+        components.hour = 6
+        components.minute = 0
         let fasting = Fasting(startedAt: Calendar.current.date(from: components)!, fastingTime: TimeInterval(integerLiteral: 16 * 3600))
-        return Output(fasting: Observable.just(fasting))
+        let fastingTimeRemaining = BehaviorSubject(value: Int(fasting.fastingTimeRemaining))
+        let timer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+        timer.withLatestFrom(fastingTimeRemaining)
+            .map({ $0 - 1 })
+            .do(onNext: { seconds in
+                if seconds < 0 { return }
+            })
+            .bind(to: fastingTimeRemaining)
+            .disposed(by: disposeBag)
+        
+        return Output(fasting: Observable.just(fasting), fastingTimeRemainingSeconds: fastingTimeRemaining)
     }
 }

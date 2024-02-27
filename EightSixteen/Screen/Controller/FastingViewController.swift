@@ -19,6 +19,16 @@ class FastingViewController: UIViewController {
     private var todayIndicator = TodayIndicatorView()
     private var fastingCountView = FastingCountView()
     private var fastingCircleView = CircleGaugeView()
+    private var fastingButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("단식 종료", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 22, weight: .semibold)
+        button.backgroundColor = .systemBlue
+        button.layer.cornerRadius = 12
+        button.clipsToBounds = true
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +58,14 @@ class FastingViewController: UIViewController {
             .map({ "\($0.fastingDayCount)일째 단식 중" })
             .bind(to: fastingCountView.fastingCountLabel.rx.text)
             .disposed(by: disposeBag)
+        
+        output.fastingTimeRemainingSeconds
+            .asObservable()
+            .map({ seconds in
+                return String(format: "%02d:%02d:%02d", seconds / 3600, (seconds % 3600) / 60, seconds % 60)
+            })
+            .bind(to: fastingCircleView.timerLabel.rx.text)
+            .disposed(by: disposeBag)
     }
     
     private func setupUI() {
@@ -55,6 +73,7 @@ class FastingViewController: UIViewController {
         view.addSubview(todayIndicator)
         view.addSubview(fastingCountView)
         view.addSubview(fastingCircleView)
+        view.addSubview(fastingButton)
         
         todayIndicator.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
@@ -69,8 +88,15 @@ class FastingViewController: UIViewController {
         }
         
         fastingCircleView.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalToSuperview().inset(40)
             make.top.equalTo(fastingCountView.snp.bottom).offset(30)
+            make.leading.trailing.equalToSuperview().inset(30)
+            make.bottom.equalTo(fastingButton.snp.top)
+        }
+        
+        fastingButton.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(40)
+            make.height.equalTo(60)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
         }
     }
     
