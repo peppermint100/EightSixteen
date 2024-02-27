@@ -28,4 +28,8 @@ struct Fasting {
     var fastingTimeRemaining: TimeInterval {
         return endedAt.timeIntervalBetween(Date(), components: [.hour, .minute, .second])
     }
+    
+    var fastingDayCount: Int {
+        return startedAt.daysBetween(now) + 1
+    }
 }

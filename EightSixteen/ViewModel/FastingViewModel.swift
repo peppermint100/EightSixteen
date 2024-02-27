@@ -20,22 +20,20 @@ class FastingViewModel {
     
     private let now = Date()
     
-    var dateObservable: Observable<Date>
     var fastingCountDriver: Driver<Int>
     
     init() {
-        self.dateObservable = Observable.just(now)
         self.fastingCountDriver = Driver.just(2)
     }
     
     func transform(_ input: Input) -> Output {
         var components = DateComponents()
+        components.year = 2024
+        components.month = 2
+        components.day = 26
         components.hour = 11
         components.minute = 30
         let fasting = Fasting(startedAt: Calendar.current.date(from: components)!, fastingTime: TimeInterval(integerLiteral: 16 * 3600))
-        print(fasting)
-        print(fasting.endedAt)
-        print(fasting.fastingTimeRemaining)
         return Output(fasting: Observable.just(fasting))
     }
 }

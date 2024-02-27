@@ -23,6 +23,7 @@ class FastingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupTodayIndicator()
         bindViewModel()
     }
     
@@ -43,16 +44,9 @@ class FastingViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        viewModel.dateObservable
-            .bind(onNext: { [weak self] in
-                self?.todayIndicator.today = $0
-            })
-            .disposed(by: disposeBag)
-        
-        viewModel.fastingCountDriver
-            .map({
-                return "현재 \($0)일째 단식중..."
-            }).drive(fastingCountView.fastingCountLabel.rx.text)
+        output.fasting
+            .map({ "\($0.fastingDayCount)일째 단식 중" })
+            .bind(to: fastingCountView.fastingCountLabel.rx.text)
             .disposed(by: disposeBag)
     }
     
@@ -78,5 +72,9 @@ class FastingViewController: UIViewController {
             make.leading.trailing.bottom.equalToSuperview().inset(40)
             make.top.equalTo(fastingCountView.snp.bottom).offset(30)
         }
+    }
+    
+    private func setupTodayIndicator() {
+        self.todayIndicator.today = Date()
     }
 }
