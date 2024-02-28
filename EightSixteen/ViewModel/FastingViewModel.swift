@@ -11,7 +11,8 @@ import RxCocoa
 
 class FastingViewModel {
     
-    let disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
+    private let timer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
     
     struct Input {
     }
@@ -28,17 +29,25 @@ class FastingViewModel {
         components.day = 26
         components.hour = 6
         components.minute = 0
+        
         let fasting = Fasting(startedAt: Calendar.current.date(from: components)!, fastingTime: TimeInterval(integerLiteral: 16 * 3600))
         let fastingTimeRemaining = BehaviorSubject(value: Int(fasting.fastingTimeRemaining))
-        let timer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
-        timer.withLatestFrom(fastingTimeRemaining)
-            .map({ $0 - 1 })
-            .do(onNext: { seconds in
-                if seconds < 0 { return }
-            })
-            .bind(to: fastingTimeRemaining)
-            .disposed(by: disposeBag)
         
-        return Output(fasting: Observable.just(fasting), fastingTimeRemainingSeconds: fastingTimeRemaining)
+        let output = Output(fasting: Observable.just(fasting), fastingTimeRemainingSeconds: fastingTimeRemaining)
+        
+        startTimer(timeSubject: fastingTimeRemaining)
+        
+        return output
+    }
+    
+    private func startTimer(timeSubject: BehaviorSubject<Int>) {
+        if let seconds = try? timeSubject.value() {
+            timer.map { seconds - $0 }
+                .take(until: { $0 == 0 }, behavior: .inclusive)
+                .subscribe(onNext: { value in
+                    timeSubject.onNext(value)
+                })
+                .disposed(by: disposeBag)
+        }
     }
 }
