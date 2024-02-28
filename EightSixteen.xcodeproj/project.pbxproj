@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8615B5AE27579BE58696B92F /* Pods_EightSixteen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E810C733997D42B82562151 /* Pods_EightSixteen.framework */; };
+		BA17DD5B2B8ECEAB009572BE /* MyVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17DD5A2B8ECEAB009572BE /* MyVCViewController.swift */; };
 		BA1886D22B81E21B007F8166 /* CircleGaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1886D12B81E21B007F8166 /* CircleGaugeView.swift */; };
 		BA1DF21A2B81A84B009AFB62 /* TodayIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1DF2192B81A84B009AFB62 /* TodayIndicatorView.swift */; };
 		BA4ED26C2B80B00E0056B8F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4ED26B2B80B00E0056B8F8 /* AppDelegate.swift */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		8E810C733997D42B82562151 /* Pods_EightSixteen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EightSixteen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		952FCD83ED0AA362FBEBA34F /* Pods-EightSixteen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EightSixteen.debug.xcconfig"; path = "Target Support Files/Pods-EightSixteen/Pods-EightSixteen.debug.xcconfig"; sourceTree = "<group>"; };
+		BA17DD5A2B8ECEAB009572BE /* MyVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVCViewController.swift; sourceTree = "<group>"; };
 		BA1886D12B81E21B007F8166 /* CircleGaugeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGaugeView.swift; sourceTree = "<group>"; };
 		BA1DF2192B81A84B009AFB62 /* TodayIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayIndicatorView.swift; sourceTree = "<group>"; };
 		BA4ED2682B80B00E0056B8F8 /* EightSixteen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EightSixteen.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +83,7 @@
 				BA4ED2762B80B0100056B8F8 /* LaunchScreen.storyboard */,
 				BA4ED2882B80E1150056B8F8 /* Controller */,
 				BA4ED2832B80E02C0056B8F8 /* Coordinator */,
+				BA17DD5A2B8ECEAB009572BE /* MyVCViewController.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA4ED28A2B80E1280056B8F8 /* FastingViewController.swift in Sources */,
+				BA17DD5B2B8ECEAB009572BE /* MyVCViewController.swift in Sources */,
 				BA9B05BD2B81B0B6000B603B /* FastingViewModel.swift in Sources */,
 				BA9B05BF2B81C5F7000B603B /* FastingCountView.swift in Sources */,
 				BA1DF21A2B81A84B009AFB62 /* TodayIndicatorView.swift in Sources */,

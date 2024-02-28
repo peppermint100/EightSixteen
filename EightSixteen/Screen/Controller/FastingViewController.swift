@@ -62,7 +62,6 @@ class FastingViewController: UIViewController {
         output.fastingTimeRemainingSeconds
             .asObservable()
             .map({ seconds in
-                print("seconds", seconds)
                 return String(format: "%02d:%02d:%02d", seconds / 3600, (seconds % 3600) / 60, seconds % 60)
             })
             .bind(to: fastingCircleView.timerLabel.rx.text)
