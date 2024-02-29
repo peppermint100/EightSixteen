@@ -7,12 +7,23 @@
 
 import Foundation
 
-struct Fasting {
+class Fasting {
     let now = Date()
-    let startedAt: Date
-    let fastingTime: TimeInterval
+    var onProgress: Bool = false
+    var startedAt: Date
+    var fastingTime: TimeInterval
     
     let calendar = Calendar.current
+    
+    init() {
+        self.startedAt = now
+        self.fastingTime = 16 * 3600
+    }
+    
+    init(startedAt: Date, fastingTime: TimeInterval) {
+        self.startedAt = startedAt
+        self.fastingTime = fastingTime
+    }
     
     var endedAt: Date {
         if let endedAt = calendar.date(byAdding: .second, value: Int(fastingTime), to: startedAt) {
@@ -31,5 +42,11 @@ struct Fasting {
     
     var fastingDayCount: Int {
         return startedAt.daysBetween(now) + 1
+    }
+    
+    func start(from startedAt: Date, fastingTime: TimeInterval) {
+        self.onProgress = true
+        self.startedAt = startedAt
+        self.fastingTime = fastingTime
     }
 }

@@ -58,7 +58,6 @@ class CircleGaugeView: UIView {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        print("Draw")
         addSubview(timerLabel)
         
         let center = CGPoint(x: rect.midX, y: rect.midY)

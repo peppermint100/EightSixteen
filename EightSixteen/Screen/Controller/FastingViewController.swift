@@ -12,16 +12,35 @@ import RxCocoa
 
 class FastingViewController: UIViewController {
     
-    var coordinator: FastingCoordinator?
     var viewModel: FastingViewModel!
     private let disposeBag = DisposeBag()
     
     private var todayIndicator = TodayIndicatorView()
     private var fastingCountView = FastingCountView()
     private var fastingCircleView = CircleGaugeView()
-    private var fastingButton: UIButton = {
+    private var emptyFastingLabel: UILabel = {
+        let label = UILabel()
+        label.text = "현재 진행중인 단식이 없습니다."
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 22, weight: .semibold)
+        label.textColor = .systemGray
+        return label
+    }()
+    
+    private var endFastingButton: UIButton = {
         let button = UIButton()
-        button.setTitle("단식 종료", for: .normal)
+        button.setTitle("단식 종료하기", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 22, weight: .semibold)
+        button.backgroundColor = .systemBlue
+        button.layer.cornerRadius = 12
+        button.clipsToBounds = true
+        return button
+    }()
+    
+    private var startFastingButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("단식 시작하기", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 22, weight: .semibold)
         button.backgroundColor = .systemBlue
@@ -37,25 +56,42 @@ class FastingViewController: UIViewController {
         bindViewModel()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        coordinator?.childDidFinish(coordinator)
-    }
-    
     func bindViewModel() {
-        let input = FastingViewModel.Input()
+        let input = FastingViewModel.Input(
+            startFastingButtonTapped: startFastingButton.rx.tap.asObservable(),
+            endFastingButtonTapped: endFastingButton.rx.tap.asObservable()
+        )
         let output = viewModel.transform(input)
         
-        output.fasting
-            .map({ ($0.fastingTimeProgressed) / $0.fastingTime })
+        output.fastingOnProgress
+            .map { !$0 }
+            .bind(to: fastingCircleView.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        output.fastingOnProgress
+            .map { !$0 }
+            .bind(to: fastingCountView.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        output.fastingOnProgress
+            .map { $0 }
+            .bind(to: startFastingButton.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        output.fastingOnProgress
+            .map { !$0 }
+            .bind(to: endFastingButton.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        output.fastingTimeProgressedRatio
             .bind(onNext: { [weak self] in
                 self?.fastingCircleView.greenPathOccupationRatio = $0
                 self?.fastingCircleView.setNeedsDisplay()
             })
             .disposed(by: disposeBag)
         
-        output.fasting
-            .map({ "\($0.fastingDayCount)일째 단식 중" })
+        output.fastingDayCount
+            .map({ "\($0)일째 단식 중" })
             .bind(to: fastingCountView.fastingCountLabel.rx.text)
             .disposed(by: disposeBag)
         
@@ -73,7 +109,9 @@ class FastingViewController: UIViewController {
         view.addSubview(todayIndicator)
         view.addSubview(fastingCountView)
         view.addSubview(fastingCircleView)
-        view.addSubview(fastingButton)
+        view.addSubview(startFastingButton)
+        view.addSubview(endFastingButton)
+        view.addSubview(emptyFastingLabel)
         
         todayIndicator.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
@@ -90,10 +128,22 @@ class FastingViewController: UIViewController {
         fastingCircleView.snp.makeConstraints { make in
             make.top.equalTo(fastingCountView.snp.bottom).offset(30)
             make.leading.trailing.equalToSuperview().inset(30)
-            make.bottom.equalTo(fastingButton.snp.top)
+            make.bottom.equalTo(startFastingButton.snp.top)
         }
         
-        fastingButton.snp.makeConstraints { make in
+        emptyFastingLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(30)
+            make.top.equalTo(todayIndicator.snp.bottom)
+            make.bottom.equalTo(startFastingButton.snp.top)
+        }
+        
+        startFastingButton.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(40)
+            make.height.equalTo(60)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
+        }
+        
+        endFastingButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(40)
             make.height.equalTo(60)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
