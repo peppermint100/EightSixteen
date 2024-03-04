@@ -25,7 +25,7 @@ class FastingCoordinator: Coordinator {
     
     func presentFastingComposeVC(fasting: Fasting, onDismiss: @escaping (Bool, Fasting) -> Void) {
         let vc = FastingComposeViewController()
-        let viewModel = FastingComposeViewModel(fasting: fasting, onDismiss: onDismiss)
+        let viewModel = FastingComposeViewModel(onDismiss: onDismiss)
         vc.sheetPresentationController?.prefersGrabberVisible = true
         vc.viewModel = viewModel
         viewModel.coordinator = self

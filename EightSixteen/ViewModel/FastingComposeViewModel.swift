@@ -11,11 +11,10 @@ import RxSwift
 class FastingComposeViewModel {
     var onDismiss: (Bool, Fasting) -> Void
     var coordinator: FastingCoordinator?
-    private var fasting: Fasting
+    private var fasting = Fasting()
     let disposeBag = DisposeBag()
     
-    init(fasting: Fasting, onDismiss: @escaping (Bool, Fasting) -> Void) {
-        self.fasting = fasting
+    init(onDismiss: @escaping (Bool, Fasting) -> Void) {
         self.onDismiss = onDismiss
     }
     
