@@ -12,16 +12,23 @@ class FastingManager {
     static let shared = FastingManager()
     private let defaults = UserDefaults.standard
     
-    func load() -> Fasting {
-        if let fasting = defaults.object(
-            forKey: UserDefaultsKey.fasting.rawValue) as? Fasting {
+    func load() -> Fasting? {
+        if
+            let decoded = defaults.data(forKey: UserDefaultsKey.fasting.rawValue),
+            let fasting = try? JSONDecoder().decode(Fasting.self, from: decoded) {
             return fasting
         }
-        
-        return Fasting()
+        return nil
     }
     
-    func save(fasting: Fasting) {
-        defaults.setValue(fasting, forKey: UserDefaultsKey.fasting.rawValue)
+    func save(_ fasting: Fasting) {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(fasting) {
+            defaults.set(encoded, forKey: UserDefaultsKey.fasting.rawValue)
+        }
+    }
+    
+    func clear() {
+        save(Fasting())
     }
 }
