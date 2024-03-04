@@ -15,14 +15,9 @@ extension Date {
         return day
     }
     
-    func timeIntervalBetween(_ date: Date, components: Set<Calendar.Component>) -> TimeInterval {
-        let calendar = Calendar.current
-        let fromAbs = calendar.dateComponents(components, from: self)
-        let toAbs = calendar.dateComponents(components, from: date)
-
-        let from = calendar.date(from: DateComponents(hour: fromAbs.hour, minute: fromAbs.minute, second: fromAbs.second))
-        let to = calendar.date(from: DateComponents(hour: toAbs.hour, minute: toAbs.minute, second: toAbs.second))
-
-        return abs(from!.timeIntervalSince(to!))
+    func formatTime() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "a hh:mm"
+        return dateFormatter.string(from: self)
     }
 }

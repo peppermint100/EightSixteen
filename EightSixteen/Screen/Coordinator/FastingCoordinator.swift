@@ -18,8 +18,21 @@ class FastingCoordinator: Coordinator {
     func start() {
         let vc = FastingViewController()
         let viewModel = FastingViewModel()
-        vc.coordinator = self
+        viewModel.coordinator = self
         vc.viewModel = viewModel
         navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func presentFastingComposeVC(fasting: Fasting, onDismiss: @escaping (Bool, Fasting) -> Void) {
+        let vc = FastingComposeViewController()
+        let viewModel = FastingComposeViewModel(fasting: fasting, onDismiss: onDismiss)
+        vc.sheetPresentationController?.prefersGrabberVisible = true
+        vc.viewModel = viewModel
+        viewModel.coordinator = self
+        navigationController.present(vc, animated: true)
+    }
+    
+    func dismissByStartFastingButton() {
+        navigationController.dismiss(animated: true)
     }
 }

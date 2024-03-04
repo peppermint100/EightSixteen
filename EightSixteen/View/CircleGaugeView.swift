@@ -11,7 +11,6 @@ class CircleGaugeView: UIView {
     
     static let animationDuration = 1.0
     static let lineWidth: CGFloat = 30
-    // ERROR: - fawef
     var greenPathOccupationRatio: CGFloat?
     
     private lazy var redLayer: CAShapeLayer = {
@@ -38,7 +37,7 @@ class CircleGaugeView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 36, weight: .semibold)
-        label.textColor = .black
+        label.textColor = .label
         return label
     }()
     

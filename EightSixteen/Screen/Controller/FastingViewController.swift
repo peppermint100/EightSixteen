@@ -27,27 +27,8 @@ class FastingViewController: UIViewController {
         return label
     }()
     
-    private var endFastingButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("단식 종료하기", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 22, weight: .semibold)
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 12
-        button.clipsToBounds = true
-        return button
-    }()
-    
-    private var startFastingButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("단식 시작하기", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 22, weight: .semibold)
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 12
-        button.clipsToBounds = true
-        return button
-    }()
+    private var endFastingButton = ESAppButton(title: "단식 종료하기")
+    private var startFastingButton = ESAppButton(title: "단식 시작하기")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,47 +38,53 @@ class FastingViewController: UIViewController {
     }
     
     func bindViewModel() {
+        let barButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: nil)
+        let trash = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: nil)
+        navigationItem.rightBarButtonItems = [barButtonItem, trash]
+        
         let input = FastingViewModel.Input(
             startFastingButtonTapped: startFastingButton.rx.tap.asObservable(),
-            endFastingButtonTapped: endFastingButton.rx.tap.asObservable()
+            endFastingButtonTapped: endFastingButton.rx.tap.asObservable(),
+            barButtonItemTapped: barButtonItem.rx.tap.asObservable(),
+            trash: trash.rx.tap.asObservable()
         )
+        
         let output = viewModel.transform(input)
         
-        output.fastingOnProgress
+        output.showFasting
+            .bind(to: emptyFastingLabel.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        output.showFasting
             .map { !$0 }
             .bind(to: fastingCircleView.rx.isHidden)
             .disposed(by: disposeBag)
         
-        output.fastingOnProgress
+        output.showFasting
             .map { !$0 }
             .bind(to: fastingCountView.rx.isHidden)
             .disposed(by: disposeBag)
+  
+        endFastingButton.isHidden = true
         
-        output.fastingOnProgress
-            .map { $0 }
-            .bind(to: startFastingButton.rx.isHidden)
-            .disposed(by: disposeBag)
-        
-        output.fastingOnProgress
-            .map { !$0 }
-            .bind(to: endFastingButton.rx.isHidden)
-            .disposed(by: disposeBag)
-        
-        output.fastingTimeProgressedRatio
+        output.fasting
+            .map { $0.fastingRatio }
             .bind(onNext: { [weak self] in
                 self?.fastingCircleView.greenPathOccupationRatio = $0
                 self?.fastingCircleView.setNeedsDisplay()
             })
             .disposed(by: disposeBag)
         
-        output.fastingDayCount
-            .map({ "\($0)일째 단식 중" })
+        output.fasting
+            .map { $0.fastingDayCount }
+            .map { "\($0)일째 단식 중" }
             .bind(to: fastingCountView.fastingCountLabel.rx.text)
             .disposed(by: disposeBag)
         
-        output.fastingTimeRemainingSeconds
-            .asObservable()
+        output.fasting
+            .map { Int($0.fastingTimeRemaining) }
             .map({ seconds in
+                print("seconds = ", seconds)
                 return String(format: "%02d:%02d:%02d", seconds / 3600, (seconds % 3600) / 60, seconds % 60)
             })
             .bind(to: fastingCircleView.timerLabel.rx.text)

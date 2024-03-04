@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8615B5AE27579BE58696B92F /* Pods_EightSixteen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E810C733997D42B82562151 /* Pods_EightSixteen.framework */; };
-		BA17DD5B2B8ECEAB009572BE /* MyVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17DD5A2B8ECEAB009572BE /* MyVCViewController.swift */; };
 		BA17DD5D2B8EDFEF009572BE /* FastingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17DD5C2B8EDFEF009572BE /* FastingManager.swift */; };
 		BA17DD602B8EE030009572BE /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17DD5F2B8EE030009572BE /* UserDefaultsKey.swift */; };
 		BA1886D22B81E21B007F8166 /* CircleGaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1886D12B81E21B007F8166 /* CircleGaugeView.swift */; };
@@ -21,18 +20,20 @@
 		BA4ED2872B80E0BD0056B8F8 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4ED2862B80E0BD0056B8F8 /* AppCoordinator.swift */; };
 		BA4ED28A2B80E1280056B8F8 /* FastingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4ED2892B80E1280056B8F8 /* FastingViewController.swift */; };
 		BA4ED28C2B80E3B10056B8F8 /* FastingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4ED28B2B80E3B10056B8F8 /* FastingCoordinator.swift */; };
+		BA65302B2B91E9C1006E7C59 /* ESAppPickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA65302A2B91E9C0006E7C59 /* ESAppPickerTextField.swift */; };
+		BA65302D2B920615006E7C59 /* Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA65302C2B920615006E7C59 /* Picker.swift */; };
 		BA9B05BD2B81B0B6000B603B /* FastingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9B05BC2B81B0B6000B603B /* FastingViewModel.swift */; };
 		BA9B05BF2B81C5F7000B603B /* FastingCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9B05BE2B81C5F7000B603B /* FastingCountView.swift */; };
 		BA9B05C12B81C707000B603B /* Fasting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9B05C02B81C707000B603B /* Fasting.swift */; };
 		BA9B05C42B81C97D000B603B /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9B05C32B81C97D000B603B /* Date.swift */; };
 		BAB816D42B9056BA0096EDE1 /* FastingComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB816D32B9056BA0096EDE1 /* FastingComposeViewController.swift */; };
 		BAB816D62B9059DE0096EDE1 /* FastingComposeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB816D52B9059DE0096EDE1 /* FastingComposeViewModel.swift */; };
+		BAB816D82B9063C50096EDE1 /* ESAppButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB816D72B9063C50096EDE1 /* ESAppButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8E810C733997D42B82562151 /* Pods_EightSixteen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EightSixteen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		952FCD83ED0AA362FBEBA34F /* Pods-EightSixteen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EightSixteen.debug.xcconfig"; path = "Target Support Files/Pods-EightSixteen/Pods-EightSixteen.debug.xcconfig"; sourceTree = "<group>"; };
-		BA17DD5A2B8ECEAB009572BE /* MyVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVCViewController.swift; sourceTree = "<group>"; };
 		BA17DD5C2B8EDFEF009572BE /* FastingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingManager.swift; sourceTree = "<group>"; };
 		BA17DD5F2B8EE030009572BE /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		BA1886D12B81E21B007F8166 /* CircleGaugeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGaugeView.swift; sourceTree = "<group>"; };
@@ -47,12 +48,15 @@
 		BA4ED2862B80E0BD0056B8F8 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		BA4ED2892B80E1280056B8F8 /* FastingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingViewController.swift; sourceTree = "<group>"; };
 		BA4ED28B2B80E3B10056B8F8 /* FastingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingCoordinator.swift; sourceTree = "<group>"; };
+		BA65302A2B91E9C0006E7C59 /* ESAppPickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESAppPickerTextField.swift; sourceTree = "<group>"; };
+		BA65302C2B920615006E7C59 /* Picker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picker.swift; sourceTree = "<group>"; };
 		BA9B05BC2B81B0B6000B603B /* FastingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingViewModel.swift; sourceTree = "<group>"; };
 		BA9B05BE2B81C5F7000B603B /* FastingCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingCountView.swift; sourceTree = "<group>"; };
 		BA9B05C02B81C707000B603B /* Fasting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fasting.swift; sourceTree = "<group>"; };
 		BA9B05C32B81C97D000B603B /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		BAB816D32B9056BA0096EDE1 /* FastingComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingComposeViewController.swift; sourceTree = "<group>"; };
 		BAB816D52B9059DE0096EDE1 /* FastingComposeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingComposeViewModel.swift; sourceTree = "<group>"; };
+		BAB816D72B9063C50096EDE1 /* ESAppButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESAppButton.swift; sourceTree = "<group>"; };
 		F2F90154FE7A4AA1E3B18F5F /* Pods-EightSixteen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EightSixteen.release.xcconfig"; path = "Target Support Files/Pods-EightSixteen/Pods-EightSixteen.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,7 +103,6 @@
 				BA4ED2762B80B0100056B8F8 /* LaunchScreen.storyboard */,
 				BA4ED2882B80E1150056B8F8 /* Controller */,
 				BA4ED2832B80E02C0056B8F8 /* Coordinator */,
-				BA17DD5A2B8ECEAB009572BE /* MyVCViewController.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -163,6 +166,8 @@
 				BA1DF2192B81A84B009AFB62 /* TodayIndicatorView.swift */,
 				BA9B05BE2B81C5F7000B603B /* FastingCountView.swift */,
 				BA1886D12B81E21B007F8166 /* CircleGaugeView.swift */,
+				BAB816D72B9063C50096EDE1 /* ESAppButton.swift */,
+				BA65302A2B91E9C0006E7C59 /* ESAppPickerTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -198,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				BA9B05C32B81C97D000B603B /* Date.swift */,
+				BA65302C2B920615006E7C59 /* Picker.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -317,20 +323,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA4ED28A2B80E1280056B8F8 /* FastingViewController.swift in Sources */,
-				BA17DD5B2B8ECEAB009572BE /* MyVCViewController.swift in Sources */,
 				BA17DD5D2B8EDFEF009572BE /* FastingManager.swift in Sources */,
 				BA9B05BD2B81B0B6000B603B /* FastingViewModel.swift in Sources */,
 				BA9B05BF2B81C5F7000B603B /* FastingCountView.swift in Sources */,
 				BA1DF21A2B81A84B009AFB62 /* TodayIndicatorView.swift in Sources */,
 				BA4ED28C2B80E3B10056B8F8 /* FastingCoordinator.swift in Sources */,
 				BA4ED2852B80E0700056B8F8 /* Coordinator.swift in Sources */,
+				BA65302B2B91E9C1006E7C59 /* ESAppPickerTextField.swift in Sources */,
 				BAB816D62B9059DE0096EDE1 /* FastingComposeViewModel.swift in Sources */,
 				BA9B05C12B81C707000B603B /* Fasting.swift in Sources */,
 				BA17DD602B8EE030009572BE /* UserDefaultsKey.swift in Sources */,
+				BA65302D2B920615006E7C59 /* Picker.swift in Sources */,
 				BA1886D22B81E21B007F8166 /* CircleGaugeView.swift in Sources */,
 				BA4ED2872B80E0BD0056B8F8 /* AppCoordinator.swift in Sources */,
 				BA9B05C42B81C97D000B603B /* Date.swift in Sources */,
 				BA4ED26C2B80B00E0056B8F8 /* AppDelegate.swift in Sources */,
+				BAB816D82B9063C50096EDE1 /* ESAppButton.swift in Sources */,
 				BAB816D42B9056BA0096EDE1 /* FastingComposeViewController.swift in Sources */,
 				BA4ED26E2B80B00E0056B8F8 /* SceneDelegate.swift in Sources */,
 			);

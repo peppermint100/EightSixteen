@@ -14,68 +14,72 @@ class FastingViewModel {
     
     var coordinator: FastingCoordinator?
     private var disposeBag = DisposeBag()
-    private let timer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
-    private let fasting = FastingManager.shared.load()
     
     struct Input {
         let startFastingButtonTapped: Observable<Void>
         let endFastingButtonTapped: Observable<Void>
+        let barButtonItemTapped: Observable<Void>
+        let trash: Observable<Void>
     }
     
     struct Output {
-        let fastingTimeRemainingSeconds: BehaviorSubject<Int>
-        let fastingOnProgress: Observable<Bool>
-        let fastingDayCount: Observable<Int>
-        let fastingTimeProgressedRatio: Observable<Double>
+        let showFasting: BehaviorSubject<Bool>
+        let fasting: BehaviorSubject<Fasting>
     }
     
     func transform(_ input: Input) -> Output {
-        let fastingTimeRemainingSeconds = BehaviorSubject(value: Int(fasting.fastingTimeRemaining))
-        let fastingOnProgress = Observable.just(fasting.onProgress)
-        let fastingDayCount = Observable.just(fasting.fastingDayCount)
-        let fastingTimeProgress = Observable.just(fasting.fastingTimeProgressed)
-        let fastingTimeProgressedRatio = Observable.just(fasting.fastingTimeProgressed / fasting.fastingTime)
+        let fasting = FastingManager.shared.load()
+        let showFastingObservable = BehaviorSubject(value: fasting != nil)
+        let fastingObservable: BehaviorSubject<Fasting>
         
-        input.startFastingButtonTapped.subscribe(onNext: { [weak self] in
-            self?.presentFastingComposeVC()
-        })
-        .disposed(by: disposeBag)
+        if let fasting = fasting { fastingObservable = BehaviorSubject(value: fasting) }
+        else { fastingObservable = BehaviorSubject(value: Fasting())}
         
-        input.endFastingButtonTapped.subscribe(onNext: { [weak self] in
-            self?.endFasting()
-        })
-        .disposed(by: disposeBag)
+        configureBarButtonItem(input.barButtonItemTapped, input.trash, fastingObservable, showFasting: showFastingObservable)
+        configureStartFastingButtonTapped(input.startFastingButtonTapped, showFastingObservable, fastingSubject: fastingObservable, fasting: fasting)
         
-        if fasting.onProgress {
-            startTimer(timeSubject: fastingTimeRemainingSeconds)
-        }
-        
-        return FastingViewModel.Output(
-            fastingTimeRemainingSeconds: fastingTimeRemainingSeconds,
-            fastingOnProgress: fastingOnProgress,
-            fastingDayCount: fastingDayCount,
-            fastingTimeProgressedRatio: fastingTimeProgressedRatio
+        let output = FastingViewModel.Output(
+            showFasting: showFastingObservable,
+            fasting: fastingObservable
         )
+        
+        return output
     }
     
-    private func startTimer(timeSubject: BehaviorSubject<Int>) {
-        if let seconds = try? timeSubject.value() {
-            timer.map { seconds - $0 }
-                .take(until: { $0 == 0 }, behavior: .inclusive)
-                .subscribe(onNext: { value in
-                    timeSubject.onNext(value)
-                })
-                .disposed(by: disposeBag)
-        }
+    private func configureBarButtonItem(_ tapped: Observable<Void>, _ trash: Observable<Void>, _ fasting: Observable<Fasting>, showFasting: BehaviorSubject<Bool>) {
+        tapped.subscribe(onNext: { [weak self] _ in
+            let fasting = FastingManager.shared.load()
+            print("startedAt= ", fasting?.startedAt)
+            print("endedAt= ", fasting?.endedAt)
+            print("hours = ", fasting?.fastingTimeHours)
+            print("ratio = ", fasting?.fastingRatio)
+            print("remaning = ", fasting?.fastingTimeRemaining)
+        })
+        .disposed(by: disposeBag)
+        
+        trash.subscribe(onNext: {
+            showFasting.onNext(false)
+            FastingManager.shared.clear()
+        })
+        .disposed(by: disposeBag)
     }
     
-    private func presentFastingComposeVC() {
-        coordinator?.presentFastingComposeVC()
+    private func configureStartFastingButtonTapped(
+        _ tapped: Observable<Void>, _ showFasting: BehaviorSubject<Bool>,
+        fastingSubject: BehaviorSubject<Fasting>, fasting: Fasting?) {
+        tapped.subscribe(onNext: { [weak self] in
+            let fasting = Fasting()
+            self?.coordinator?.presentFastingComposeVC(fasting: fasting) { fastingCreated, fasting in
+                showFasting.onNext(fastingCreated)
+                fastingSubject.onNext(fasting)
+                print(fasting)
+            }
+        })
+        .disposed(by: disposeBag)
     }
     
-    private func startFasting() {
-    }
-    
-    private func endFasting() {
+    private func configureEndFastingButton(_ tapped: Observable<Void>, onProgressSubject: BehaviorSubject<Bool>) {
+        FastingManager.shared.clear()
+        onProgressSubject.onNext(false)
     }
 }
