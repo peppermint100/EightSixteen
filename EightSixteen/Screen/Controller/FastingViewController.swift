@@ -81,9 +81,7 @@ class FastingViewController: UIViewController {
             .bind(to: fastingCountView.fastingCountLabel.rx.text)
             .disposed(by: disposeBag)
         
-        output.timerSeconds
-            .map { Int($0) }
-            .map({ String(format: "%02d:%02d:%02d", $0 / 3600, ($0 % 3600) / 60, $0 % 60) })
+        output.fastingStatusIndicatorText
             .bind(to: fastingCircleView.timerLabel.rx.text)
             .disposed(by: disposeBag)
     }

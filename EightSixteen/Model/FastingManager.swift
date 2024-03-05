@@ -12,6 +12,20 @@ class FastingManager {
     static let shared = FastingManager()
     private let defaults = UserDefaults.standard
     
+    func dummyLoad() -> Fasting? {
+        var fasting = Fasting()
+        var components = DateComponents()
+        components.year = 2024
+        components.month = 3
+        components.day = 4
+        components.hour = 12
+        components.minute = 0
+        components.second = 0
+        fasting.startedAt = Calendar.current.date(from: components)!
+        fasting.fastingTimeHours = 2
+        return fasting
+    }
+    
     func load() -> Fasting? {
         if
             let decoded = defaults.data(forKey: UserDefaultsKey.fasting.rawValue),

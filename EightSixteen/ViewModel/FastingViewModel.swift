@@ -26,35 +26,50 @@ class FastingViewModel {
     struct Output {
         let showFasting: BehaviorSubject<Bool>
         let fasting: BehaviorSubject<Fasting>
-        let timerSeconds: BehaviorSubject<TimeInterval>
+        let fastingStatusIndicatorText: BehaviorSubject<String>
     }
     
     func transform(_ input: Input) -> Output {
-        let fasting = FastingManager.shared.load()
+        let fasting = FastingManager.shared.dummyLoad()
         let showFastingObservable = BehaviorSubject(value: fasting != nil)
         let fastingObservable: BehaviorSubject<Fasting>
         let timerSeconds: BehaviorSubject<TimeInterval>
+        let fastingStatusIndicatorText = BehaviorSubject(value: "")
         
         if let fasting = fasting {
             fastingObservable = BehaviorSubject(value: fasting)
             timerSeconds = BehaviorSubject(value: fasting.fastingTimeRemaining)
         }
         else {
-            fastingObservable = BehaviorSubject(value: Fasting())
-            timerSeconds = BehaviorSubject(value: 0)
+            let fasting = Fasting()
+            fastingObservable = BehaviorSubject(value: fasting)
+            timerSeconds = BehaviorSubject(value: TimeInterval(Fasting.defaultFastingHours * 3600))
         }
         
         configureBarButtonItem(input.barButtonItemTapped, input.trash, fastingObservable, showFasting: showFastingObservable)
         configureStartFastingButtonTapped(input.startFastingButtonTapped, showFastingObservable, fastingSubject: fastingObservable, timerSeconds: timerSeconds)
+        configureFastingStatusIndicatorText(timerSeconds: timerSeconds, text: fastingStatusIndicatorText)
         configureTimer(showFastingObservable, timerSeconds: timerSeconds)
         
         let output = FastingViewModel.Output(
             showFasting: showFastingObservable,
             fasting: fastingObservable,
-            timerSeconds: timerSeconds
+            fastingStatusIndicatorText: fastingStatusIndicatorText
         )
         
         return output
+    }
+    
+    private func configureFastingStatusIndicatorText(timerSeconds: BehaviorSubject<TimeInterval>, text: BehaviorSubject<String>) {
+        timerSeconds
+            .subscribe(onNext: {
+                if $0 > 0 {
+                    text.onNext($0.formatTimeIntervalToHHMMSS())
+                } else {
+                    text.onNext("식사 시간입니다.")
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     private func configureTimer(_ showFasting: BehaviorSubject<Bool>, timerSeconds: BehaviorSubject<TimeInterval>) {
@@ -69,6 +84,10 @@ class FastingViewModel {
                 self?.timer = DispatchSource.makeTimerSource(queue: DispatchQueue.global(qos: .background))
                 self?.timer?.schedule(deadline: .now(), repeating: 1)
                 self?.timer?.setEventHandler {
+                    if seconds < 0 {
+                        self?.timer?.cancel()
+                        self?.timer = nil
+                    }
                     seconds -= 1
                     timerSeconds.onNext(seconds)
                 }
@@ -80,9 +99,9 @@ class FastingViewModel {
     
     private func configureBarButtonItem(_ tapped: Observable<Void>, _ trash: Observable<Void>, _ fasting: Observable<Fasting>, showFasting: BehaviorSubject<Bool>) {
         tapped.subscribe(onNext: { [weak self] _ in
-            let fasting = FastingManager.shared.load()
-            print("startedAt= ", fasting?.startedAt)
-            print("endedAt= ", fasting?.endedAt)
+            var fasting = FastingManager.shared.load()
+            print("startedAt= ", fasting?.startedAt.addTimeInterval(3600 * 9))
+            print("endedAt= ", fasting?.endedAt.addingTimeInterval(3600 * 9))
             print("hours = ", fasting?.fastingTimeHours)
             print("ratio = ", fasting?.fastingRatio)
             print("remaning = ", fasting?.fastingTimeRemaining)
