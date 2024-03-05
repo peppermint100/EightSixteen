@@ -20,6 +20,7 @@
 		BA4ED2872B80E0BD0056B8F8 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4ED2862B80E0BD0056B8F8 /* AppCoordinator.swift */; };
 		BA4ED28A2B80E1280056B8F8 /* FastingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4ED2892B80E1280056B8F8 /* FastingViewController.swift */; };
 		BA4ED28C2B80E3B10056B8F8 /* FastingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4ED28B2B80E3B10056B8F8 /* FastingCoordinator.swift */; };
+		BA4F31E32B9755D100C57E06 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4F31E22B9755D100C57E06 /* Notification.swift */; };
 		BA65302B2B91E9C1006E7C59 /* ESAppPickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA65302A2B91E9C0006E7C59 /* ESAppPickerTextField.swift */; };
 		BA65302D2B920615006E7C59 /* Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA65302C2B920615006E7C59 /* Picker.swift */; };
 		BA809C1F2B96D69700CA8EE4 /* TimerInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA809C1E2B96D69700CA8EE4 /* TimerInterval.swift */; };
@@ -49,6 +50,7 @@
 		BA4ED2862B80E0BD0056B8F8 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		BA4ED2892B80E1280056B8F8 /* FastingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingViewController.swift; sourceTree = "<group>"; };
 		BA4ED28B2B80E3B10056B8F8 /* FastingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingCoordinator.swift; sourceTree = "<group>"; };
+		BA4F31E22B9755D100C57E06 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		BA65302A2B91E9C0006E7C59 /* ESAppPickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESAppPickerTextField.swift; sourceTree = "<group>"; };
 		BA65302C2B920615006E7C59 /* Picker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picker.swift; sourceTree = "<group>"; };
 		BA809C1E2B96D69700CA8EE4 /* TimerInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerInterval.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				BA17DD5F2B8EE030009572BE /* UserDefaultsKey.swift */,
+				BA4F31E22B9755D100C57E06 /* Notification.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				BA9B05C42B81C97D000B603B /* Date.swift in Sources */,
 				BA4ED26C2B80B00E0056B8F8 /* AppDelegate.swift in Sources */,
 				BA809C1F2B96D69700CA8EE4 /* TimerInterval.swift in Sources */,
+				BA4F31E32B9755D100C57E06 /* Notification.swift in Sources */,
 				BAB816D82B9063C50096EDE1 /* ESAppButton.swift in Sources */,
 				BAB816D42B9056BA0096EDE1 /* FastingComposeViewController.swift in Sources */,
 				BA4ED26E2B80B00E0056B8F8 /* SceneDelegate.swift in Sources */,

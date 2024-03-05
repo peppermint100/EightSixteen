@@ -48,12 +48,15 @@ struct Fasting: Codable {
         let nowMinutes = Calendar.current.component(.minute, from: now)
         let nowSeconds = Calendar.current.component(.second, from: now)
         let startedAtMinutes = Calendar.current.component(.minute, from: startedAt)
-        let startedAtSeconds = Calendar.current.component(.second, from: startedAt) + 1
+        let startedAtSeconds = Calendar.current.component(.second, from: startedAt)
+        
+        let minutesToSeconds = startedAtMinutes == 0 ? (60 - nowMinutes) * 60 : (60 - (nowMinutes % startedAtMinutes)) * 60
+        let seconds = startedAtSeconds == 0 ? (60 - nowSeconds) : 60 - (nowSeconds % startedAtSeconds)
         
         return TimeInterval(
             (hours * 3600)
-            + ((60 - (nowMinutes % startedAtMinutes)) * 60)
-            + (60 - (nowSeconds % startedAtSeconds) - 60))
+            + minutesToSeconds
+            + seconds)
     }
     
     var fastingDayCount: Int {
