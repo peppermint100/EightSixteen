@@ -20,7 +20,6 @@ class FastingViewModel {
         let startFastingButtonTapped: Observable<Void>
         let endFastingButtonTapped: Observable<Void>
         let barButtonItemTapped: Observable<Void>
-        let trash: Observable<Void>
     }
     
     struct Output {
@@ -30,7 +29,7 @@ class FastingViewModel {
     }
     
     func transform(_ input: Input) -> Output {
-        let fasting = FastingManager.shared.dummyLoad()
+        let fasting = FastingManager.shared.load()
         let showFastingObservable = BehaviorSubject(value: fasting != nil)
         let fastingObservable: BehaviorSubject<Fasting>
         let timerSeconds: BehaviorSubject<TimeInterval>
@@ -46,8 +45,9 @@ class FastingViewModel {
             timerSeconds = BehaviorSubject(value: TimeInterval(Fasting.defaultFastingHours * 3600))
         }
         
-        configureBarButtonItem(input.barButtonItemTapped, input.trash, fastingObservable, showFasting: showFastingObservable)
+        configureBarButtonItem(input.barButtonItemTapped, fastingObservable, showFasting: showFastingObservable)
         configureStartFastingButtonTapped(input.startFastingButtonTapped, showFastingObservable, fastingSubject: fastingObservable, timerSeconds: timerSeconds)
+        configureEndFastingButton(input.endFastingButtonTapped, showFasting: showFastingObservable)
         configureFastingStatusIndicatorText(timerSeconds: timerSeconds, text: fastingStatusIndicatorText)
         configureTimer(showFastingObservable, timerSeconds: timerSeconds)
         
@@ -97,7 +97,7 @@ class FastingViewModel {
         .disposed(by: disposeBag)
     }
     
-    private func configureBarButtonItem(_ tapped: Observable<Void>, _ trash: Observable<Void>, _ fasting: Observable<Fasting>, showFasting: BehaviorSubject<Bool>) {
+    private func configureBarButtonItem(_ tapped: Observable<Void>, _ fasting: Observable<Fasting>, showFasting: BehaviorSubject<Bool>) {
         tapped.subscribe(onNext: { [weak self] _ in
             var fasting = FastingManager.shared.load()
             print("startedAt= ", fasting?.startedAt.addTimeInterval(3600 * 9))
@@ -105,12 +105,6 @@ class FastingViewModel {
             print("hours = ", fasting?.fastingTimeHours)
             print("ratio = ", fasting?.fastingRatio)
             print("remaning = ", fasting?.fastingTimeRemaining)
-        })
-        .disposed(by: disposeBag)
-        
-        trash.subscribe(onNext: {
-            showFasting.onNext(false)
-            FastingManager.shared.clear()
         })
         .disposed(by: disposeBag)
     }
@@ -129,8 +123,20 @@ class FastingViewModel {
         .disposed(by: disposeBag)
     }
     
-    private func configureEndFastingButton(_ tapped: Observable<Void>, onProgressSubject: BehaviorSubject<Bool>) {
+    private func configureEndFastingButton(_ tapped: Observable<Void>, showFasting: BehaviorSubject<Bool>) {
+        tapped
+            .subscribe(onNext: { [weak self] in
+                self?.coordinator?.alertByEndFastingButton(onOk: { _ in
+                    self?.endFasting(showFasting)
+                })
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func endFasting(_ showFasting: BehaviorSubject<Bool>) {
+        timer?.cancel()
+        timer = nil
         FastingManager.shared.clear()
-        onProgressSubject.onNext(false)
+        showFasting.onNext(false)
     }
 }

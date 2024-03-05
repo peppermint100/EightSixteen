@@ -39,14 +39,12 @@ class FastingViewController: UIViewController {
     
     func bindViewModel() {
         let barButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: nil)
-        let trash = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: nil)
-        navigationItem.rightBarButtonItems = [barButtonItem, trash]
+        navigationItem.rightBarButtonItems = [barButtonItem]
         
         let input = FastingViewModel.Input(
             startFastingButtonTapped: startFastingButton.rx.tap.asObservable(),
             endFastingButtonTapped: endFastingButton.rx.tap.asObservable(),
-            barButtonItemTapped: barButtonItem.rx.tap.asObservable(),
-            trash: trash.rx.tap.asObservable()
+            barButtonItemTapped: barButtonItem.rx.tap.asObservable()
         )
         
         let output = viewModel.transform(input)
@@ -64,8 +62,16 @@ class FastingViewController: UIViewController {
             .map { !$0 }
             .bind(to: fastingCountView.rx.isHidden)
             .disposed(by: disposeBag)
-  
-        endFastingButton.isHidden = true
+        
+        output.showFasting
+            .map { $0 }
+            .bind(to: startFastingButton.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        output.showFasting
+            .map { !$0 }
+            .bind(to: endFastingButton.rx.isHidden)
+            .disposed(by: disposeBag)
         
         output.fasting
             .map { $0.fastingRatio }

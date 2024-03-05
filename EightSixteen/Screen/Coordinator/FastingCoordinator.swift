@@ -35,4 +35,14 @@ class FastingCoordinator: Coordinator {
     func dismissByStartFastingButton() {
         navigationController.dismiss(animated: true)
     }
+    
+    func alertByEndFastingButton(onOk: @escaping (UIAlertAction) -> Void) {
+        guard let vc = navigationController.topViewController else { return }
+        let alert = UIAlertController(title: "단식을 종료합니다", message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "종료", style: .destructive, handler: onOk)
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        alert.addAction(cancelAction)
+        alert.addAction(okAction)
+        vc.present(alert, animated: true)
+    }
 }

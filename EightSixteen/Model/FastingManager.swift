@@ -35,7 +35,7 @@ class FastingManager {
         return nil
     }
     
-    func save(_ fasting: Fasting) {
+    func save(_ fasting: Fasting?) {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(fasting) {
             defaults.set(encoded, forKey: UserDefaultsKey.fasting.rawValue)
@@ -43,6 +43,6 @@ class FastingManager {
     }
     
     func clear() {
-        save(Fasting())
+        save(nil)
     }
 }
