@@ -95,3 +95,4 @@ iOSInjectionProject/
 
 # End of https://www.toptal.com/developers/gitignore/api/swift,cocoapods
 *.xcuserstate
+EightSixteen/Credentials.plist

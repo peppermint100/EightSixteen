@@ -48,6 +48,9 @@ class FastingCoordinator: Coordinator {
     
     func pushToRecipeListVC() {
         let vc = RecipeListViewController()
+        let viewModel = RecipeListViewModel()
+        viewModel.coordinator = self
+        vc.viewModel = viewModel
         navigationController.pushViewController(vc, animated: true)
     }
 }
