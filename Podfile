@@ -10,4 +10,5 @@ target 'EightSixteen' do
   pod 'RxCocoa'
   pod 'Action'
   pod 'Alamofire', '~> 5.2'
+  pod 'Kingfisher', '~> 5.0'
 end
