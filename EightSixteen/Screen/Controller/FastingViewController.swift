@@ -30,20 +30,32 @@ class FastingViewController: UIViewController {
     private var endFastingButton = ESAppButton(title: "단식 종료하기")
     private var startFastingButton = ESAppButton(title: "단식 시작하기")
     
+    private lazy var recipeListBarButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: UIImage(systemName: "fork.knife.circle"), style: .plain, target: self, action: nil)
+        button.tintColor = .label
+        return button
+    }()
+    
+    private lazy var barButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: nil)
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupNavigationBar()
         setupTodayIndicator()
         bindViewModel()
     }
     
-    func bindViewModel() {
-        let barButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: nil)
-        navigationItem.rightBarButtonItems = [barButtonItem]
-        
+    private func setupNavigationBar() {
+        navigationItem.rightBarButtonItems = [recipeListBarButton, barButtonItem]
+        barButtonItem.tintColor = .label
+    }
+    
+    private func bindViewModel() {
         let input = FastingViewModel.Input(
             startFastingButtonTapped: startFastingButton.rx.tap.asObservable(),
             endFastingButtonTapped: endFastingButton.rx.tap.asObservable(),
+            recipeListBarButtonTapped: recipeListBarButton.rx.tap.asObservable(),
             barButtonItemTapped: barButtonItem.rx.tap.asObservable()
         )
         

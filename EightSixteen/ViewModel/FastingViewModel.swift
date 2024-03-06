@@ -20,6 +20,7 @@ class FastingViewModel {
     struct Input {
         let startFastingButtonTapped: Observable<Void>
         let endFastingButtonTapped: Observable<Void>
+        let recipeListBarButtonTapped: Observable<Void>
         let barButtonItemTapped: Observable<Void>
     }
     
@@ -49,6 +50,7 @@ class FastingViewModel {
         }
         
         configureBarButtonItem(input.barButtonItemTapped, fastingObservable, showFasting: showFastingObservable)
+        configureRecipeListBarButtonTapped(input.recipeListBarButtonTapped)
         configureStartFastingButtonTapped(input.startFastingButtonTapped, showFastingObservable, fastingSubject: fastingObservable, timerSeconds: timerSeconds)
         configureEndFastingButton(input.endFastingButtonTapped, showFasting: showFastingObservable)
         configureFastingStatusIndicatorText(timerSeconds: timerSeconds, text: fastingStatusIndicatorText)
@@ -61,6 +63,14 @@ class FastingViewModel {
         )
         
         return output
+    }
+    
+    private func configureRecipeListBarButtonTapped(_ tapped: Observable<Void>) {
+        tapped
+            .subscribe(onNext: { [weak self] in
+                self?.coordinator?.pushToRecipeListVC()
+            })
+            .disposed(by: disposeBag)
     }
     
     private func configureFastingStatusIndicatorText(timerSeconds: BehaviorSubject<TimeInterval>, text: BehaviorSubject<String>) {

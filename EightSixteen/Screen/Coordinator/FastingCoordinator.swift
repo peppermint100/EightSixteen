@@ -45,4 +45,9 @@ class FastingCoordinator: Coordinator {
         alert.addAction(okAction)
         vc.present(alert, animated: true)
     }
+    
+    func pushToRecipeListVC() {
+        let vc = RecipeListViewController()
+        navigationController.pushViewController(vc, animated: true)
+    }
 }
