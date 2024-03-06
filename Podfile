@@ -9,4 +9,5 @@ target 'EightSixteen' do
   pod 'RxSwift', '6.2.0'
   pod 'RxCocoa'
   pod 'Action'
+  pod 'Alamofire', '~> 5.2'
 end
