@@ -13,6 +13,7 @@
 		BA182F182B98372D00B9AE49 /* RecipeAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA182F172B98372D00B9AE49 /* RecipeAPIManager.swift */; };
 		BA182F1A2B983D2700B9AE49 /* RecipeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA182F192B983D2700B9AE49 /* RecipeListViewModel.swift */; };
 		BA182F1E2B98485B00B9AE49 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA182F1D2B98485B00B9AE49 /* Credentials.plist */; };
+		BA182F202B985EE300B9AE49 /* RecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA182F1F2B985EE300B9AE49 /* RecipeCollectionViewCell.swift */; };
 		BA1886D22B81E21B007F8166 /* CircleGaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1886D12B81E21B007F8166 /* CircleGaugeView.swift */; };
 		BA1DF21A2B81A84B009AFB62 /* TodayIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1DF2192B81A84B009AFB62 /* TodayIndicatorView.swift */; };
 		BA4ED26C2B80B00E0056B8F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4ED26B2B80B00E0056B8F8 /* AppDelegate.swift */; };
@@ -46,6 +47,7 @@
 		BA182F172B98372D00B9AE49 /* RecipeAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAPIManager.swift; sourceTree = "<group>"; };
 		BA182F192B983D2700B9AE49 /* RecipeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListViewModel.swift; sourceTree = "<group>"; };
 		BA182F1D2B98485B00B9AE49 /* Credentials.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Credentials.plist; sourceTree = "<group>"; };
+		BA182F1F2B985EE300B9AE49 /* RecipeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCollectionViewCell.swift; sourceTree = "<group>"; };
 		BA1886D12B81E21B007F8166 /* CircleGaugeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGaugeView.swift; sourceTree = "<group>"; };
 		BA1DF2192B81A84B009AFB62 /* TodayIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayIndicatorView.swift; sourceTree = "<group>"; };
 		BA4ED2682B80B00E0056B8F8 /* EightSixteen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EightSixteen.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,6 +188,7 @@
 				BA1886D12B81E21B007F8166 /* CircleGaugeView.swift */,
 				BAB816D72B9063C50096EDE1 /* ESAppButton.swift */,
 				BA65302A2B91E9C0006E7C59 /* ESAppPickerTextField.swift */,
+				BA182F1F2B985EE300B9AE49 /* RecipeCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				BAC2BB4B2B9816E100A2D4D6 /* RecipeListViewController.swift in Sources */,
 				BA9B05BF2B81C5F7000B603B /* FastingCountView.swift in Sources */,
 				BAC2BB492B9815A100A2D4D6 /* RecipeResponse.swift in Sources */,
+				BA182F202B985EE300B9AE49 /* RecipeCollectionViewCell.swift in Sources */,
 				BA182F182B98372D00B9AE49 /* RecipeAPIManager.swift in Sources */,
 				BA1DF21A2B81A84B009AFB62 /* TodayIndicatorView.swift in Sources */,
 				BA4ED28C2B80E3B10056B8F8 /* FastingCoordinator.swift in Sources */,

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 import RxSwift
 import RxCocoa
 
@@ -13,6 +14,11 @@ class RecipeListViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     var viewModel: RecipeListViewModel!
+    private lazy var recipeCollectionView: UICollectionView = {
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout())
+        cv.register(RecipeCollectionViewCell.self, forCellWithReuseIdentifier: RecipeCollectionViewCell.identifier)
+        return cv
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +27,13 @@ class RecipeListViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .red
+        view.backgroundColor = .systemBackground
+        view.addSubview(recipeCollectionView)
+        
+        recipeCollectionView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
     private func bindViewModel() {
@@ -31,5 +43,23 @@ class RecipeListViewController: UIViewController {
         output.navigationTitle
             .bind(to: navigationItem.rx.title)
             .disposed(by: disposeBag)
+        
+        output.recipes
+            .bind(to: recipeCollectionView.rx.items(cellIdentifier: RecipeCollectionViewCell.identifier, cellType: RecipeCollectionViewCell.self)) {
+                idx, recipe, cell in
+                cell.configure(imageUrl: recipe.httpsThumbnailUrl, name: recipe.name, category: recipe.category)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    private func createLayout() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        let inset: CGFloat = 15
+        let itemWidth = (view.frame.width / 2) - (inset * 1.5)
+        let itemHeight: CGFloat = 210
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
+        layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
+        return layout
     }
 }
