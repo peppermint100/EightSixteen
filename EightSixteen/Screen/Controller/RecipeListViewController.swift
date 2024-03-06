@@ -19,6 +19,16 @@ class RecipeListViewController: UIViewController {
         cv.register(RecipeCollectionViewCell.self, forCellWithReuseIdentifier: RecipeCollectionViewCell.identifier)
         return cv
     }()
+    
+    private lazy var loadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        indicator.center = self.view.center
+        indicator.hidesWhenStopped = false
+        indicator.style = .large
+        indicator.startAnimating()
+        return indicator
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +38,7 @@ class RecipeListViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .systemBackground
+        view.addSubview(loadingIndicator)
         view.addSubview(recipeCollectionView)
         
         recipeCollectionView.snp.makeConstraints { make in
@@ -49,6 +60,22 @@ class RecipeListViewController: UIViewController {
                 idx, recipe, cell in
                 cell.configure(imageUrl: recipe.httpsThumbnailUrl, name: recipe.name, category: recipe.category)
             }
+            .disposed(by: disposeBag)
+        
+        output.isFetchingRecipes
+            .bind(to: recipeCollectionView.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        output.isFetchingRecipes
+            .map { !$0 }
+            .bind(to: loadingIndicator.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        output.isFetchingRecipes
+            .subscribe(onNext: { [weak self] isFetching in
+                if isFetching { self?.loadingIndicator.startAnimating() }
+                else { self?.loadingIndicator.stopAnimating() }
+            })
             .disposed(by: disposeBag)
     }
     
