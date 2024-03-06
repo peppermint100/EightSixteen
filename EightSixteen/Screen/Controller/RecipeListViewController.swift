@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class RecipeListViewController: UIViewController {
     
+    let disposeBag = DisposeBag()
     var viewModel: RecipeListViewModel!
 
     override func viewDidLoad() {
@@ -24,5 +27,9 @@ class RecipeListViewController: UIViewController {
     private func bindViewModel() {
         let input = RecipeListViewModel.Input()
         let output = viewModel.transform(input)
+        
+        output.navigationTitle
+            .bind(to: navigationItem.rx.title)
+            .disposed(by: disposeBag)
     }
 }
