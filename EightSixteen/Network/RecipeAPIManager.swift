@@ -27,8 +27,8 @@ class RecipeAPIManager {
         return ""
     }
     
-    func fetchRecipes(page: Int, size: Int) -> Observable<Result<RecipeResponse, RecipeError>>{
-        let url = "\(baseUrl)/\(page)/\(size)"
+    func fetchRecipes(from: Int, to: Int) -> Observable<Result<RecipeResponse, RecipeError>>{
+        let url = "\(baseUrl)/\(from)/\(to)"
         return Observable.create { observer -> Disposable in
             AF.request(
                 url, method: .get

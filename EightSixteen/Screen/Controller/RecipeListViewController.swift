@@ -29,6 +29,16 @@ class RecipeListViewController: UIViewController {
         indicator.startAnimating()
         return indicator
     }()
+    
+    private lazy var bottomLoadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        indicator.center = self.view.center
+        indicator.hidesWhenStopped = false
+        indicator.style = .large
+        indicator.startAnimating()
+        return indicator
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,15 +50,23 @@ class RecipeListViewController: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubview(loadingIndicator)
         view.addSubview(recipeCollectionView)
+        view.addSubview(bottomLoadingIndicator)
         
         recipeCollectionView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.top.bottom.equalTo(view.safeAreaLayoutGuide)
         }
+        
+        bottomLoadingIndicator.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(recipeCollectionView.snp.bottom)
+        }
     }
     
     private func bindViewModel() {
-        let input = RecipeListViewModel.Input()
+        let input = RecipeListViewModel.Input(
+            recipeCollecionViewReachedBottom: recipeCollectionView.rx.reachedBottom.asObservable()
+        )
         let output = viewModel.transform(input)
         
         output.navigationTitle
@@ -76,6 +94,11 @@ class RecipeListViewController: UIViewController {
                 if isFetching { self?.loadingIndicator.startAnimating() }
                 else { self?.loadingIndicator.stopAnimating() }
             })
+            .disposed(by: disposeBag)
+        
+        output.isFetchingMoreRecipes
+            .map { !$0 }
+            .bind(to: bottomLoadingIndicator.rx.isHidden)
             .disposed(by: disposeBag)
     }
     
