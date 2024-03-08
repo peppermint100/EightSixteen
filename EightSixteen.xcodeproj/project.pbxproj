@@ -14,7 +14,7 @@
 		BA182F1A2B983D2700B9AE49 /* RecipeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA182F192B983D2700B9AE49 /* RecipeListViewModel.swift */; };
 		BA182F1E2B98485B00B9AE49 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA182F1D2B98485B00B9AE49 /* Credentials.plist */; };
 		BA182F202B985EE300B9AE49 /* RecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA182F1F2B985EE300B9AE49 /* RecipeCollectionViewCell.swift */; };
-		BA1886D22B81E21B007F8166 /* CircleGaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1886D12B81E21B007F8166 /* CircleGaugeView.swift */; };
+		BA1886D22B81E21B007F8166 /* FastingCircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1886D12B81E21B007F8166 /* FastingCircleProgressView.swift */; };
 		BA1DF21A2B81A84B009AFB62 /* TodayIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1DF2192B81A84B009AFB62 /* TodayIndicatorView.swift */; };
 		BA21D63F2B9952050072C87D /* ScrollView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA21D63E2B9952050072C87D /* ScrollView+Rx.swift */; };
 		BA21D6432B9991770072C87D /* RecipeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA21D6422B9991770072C87D /* RecipeDetailsViewController.swift */; };
@@ -35,7 +35,7 @@
 		BA98BE772B99F8A5003C570B /* ManualStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA98BE762B99F8A5003C570B /* ManualStepView.swift */; };
 		BA98BE792B99FAEF003C570B /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA98BE782B99FAEF003C570B /* String+URL.swift */; };
 		BA9B05BD2B81B0B6000B603B /* FastingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9B05BC2B81B0B6000B603B /* FastingViewModel.swift */; };
-		BA9B05BF2B81C5F7000B603B /* FastingCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9B05BE2B81C5F7000B603B /* FastingCountView.swift */; };
+		BA9B05BF2B81C5F7000B603B /* FastingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9B05BE2B81C5F7000B603B /* FastingIndicatorView.swift */; };
 		BA9B05C12B81C707000B603B /* Fasting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9B05C02B81C707000B603B /* Fasting.swift */; };
 		BA9B05C42B81C97D000B603B /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9B05C32B81C97D000B603B /* Date.swift */; };
 		BAB816D42B9056BA0096EDE1 /* FastingComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB816D32B9056BA0096EDE1 /* FastingComposeViewController.swift */; };
@@ -54,7 +54,7 @@
 		BA182F192B983D2700B9AE49 /* RecipeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListViewModel.swift; sourceTree = "<group>"; };
 		BA182F1D2B98485B00B9AE49 /* Credentials.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Credentials.plist; sourceTree = "<group>"; };
 		BA182F1F2B985EE300B9AE49 /* RecipeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCollectionViewCell.swift; sourceTree = "<group>"; };
-		BA1886D12B81E21B007F8166 /* CircleGaugeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGaugeView.swift; sourceTree = "<group>"; };
+		BA1886D12B81E21B007F8166 /* FastingCircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingCircleProgressView.swift; sourceTree = "<group>"; };
 		BA1DF2192B81A84B009AFB62 /* TodayIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayIndicatorView.swift; sourceTree = "<group>"; };
 		BA21D63E2B9952050072C87D /* ScrollView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScrollView+Rx.swift"; sourceTree = "<group>"; };
 		BA21D6422B9991770072C87D /* RecipeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsViewController.swift; sourceTree = "<group>"; };
@@ -77,7 +77,7 @@
 		BA98BE762B99F8A5003C570B /* ManualStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualStepView.swift; sourceTree = "<group>"; };
 		BA98BE782B99FAEF003C570B /* String+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+URL.swift"; sourceTree = "<group>"; };
 		BA9B05BC2B81B0B6000B603B /* FastingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingViewModel.swift; sourceTree = "<group>"; };
-		BA9B05BE2B81C5F7000B603B /* FastingCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingCountView.swift; sourceTree = "<group>"; };
+		BA9B05BE2B81C5F7000B603B /* FastingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingIndicatorView.swift; sourceTree = "<group>"; };
 		BA9B05C02B81C707000B603B /* Fasting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fasting.swift; sourceTree = "<group>"; };
 		BA9B05C32B81C97D000B603B /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		BAB816D32B9056BA0096EDE1 /* FastingComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingComposeViewController.swift; sourceTree = "<group>"; };
@@ -197,8 +197,8 @@
 			isa = PBXGroup;
 			children = (
 				BA1DF2192B81A84B009AFB62 /* TodayIndicatorView.swift */,
-				BA9B05BE2B81C5F7000B603B /* FastingCountView.swift */,
-				BA1886D12B81E21B007F8166 /* CircleGaugeView.swift */,
+				BA9B05BE2B81C5F7000B603B /* FastingIndicatorView.swift */,
+				BA1886D12B81E21B007F8166 /* FastingCircleProgressView.swift */,
 				BAB816D72B9063C50096EDE1 /* ESAppButton.swift */,
 				BA65302A2B91E9C0006E7C59 /* ESAppPickerTextField.swift */,
 				BA182F1F2B985EE300B9AE49 /* RecipeCollectionViewCell.swift */,
@@ -380,7 +380,7 @@
 				BA21D6432B9991770072C87D /* RecipeDetailsViewController.swift in Sources */,
 				BA21D63F2B9952050072C87D /* ScrollView+Rx.swift in Sources */,
 				BAC2BB4B2B9816E100A2D4D6 /* RecipeListViewController.swift in Sources */,
-				BA9B05BF2B81C5F7000B603B /* FastingCountView.swift in Sources */,
+				BA9B05BF2B81C5F7000B603B /* FastingIndicatorView.swift in Sources */,
 				BAC2BB492B9815A100A2D4D6 /* RecipeResponse.swift in Sources */,
 				BA182F202B985EE300B9AE49 /* RecipeCollectionViewCell.swift in Sources */,
 				BA182F182B98372D00B9AE49 /* RecipeAPIManager.swift in Sources */,
@@ -394,7 +394,7 @@
 				BA17DD602B8EE030009572BE /* UserDefaultsKey.swift in Sources */,
 				BA65302D2B920615006E7C59 /* Picker.swift in Sources */,
 				BA21D6452B99922E0072C87D /* RecipeDetailsViewModel.swift in Sources */,
-				BA1886D22B81E21B007F8166 /* CircleGaugeView.swift in Sources */,
+				BA1886D22B81E21B007F8166 /* FastingCircleProgressView.swift in Sources */,
 				BA4ED2872B80E0BD0056B8F8 /* AppCoordinator.swift in Sources */,
 				BA9B05C42B81C97D000B603B /* Date.swift in Sources */,
 				BA182F1A2B983D2700B9AE49 /* RecipeListViewModel.swift in Sources */,

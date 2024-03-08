@@ -16,8 +16,8 @@ class FastingViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     private var todayIndicator = TodayIndicatorView()
-    private var fastingCountView = FastingCountView()
-    private var fastingCircleView = CircleGaugeView()
+    private var fastingIndicatorView = FastingIndicatorView()
+    private var fastingCircleView = FastingCircleProgressView()
     private var emptyFastingLabel: UILabel = {
         let label = UILabel()
         label.text = "현재 진행중인 단식이 없습니다."
@@ -72,7 +72,7 @@ class FastingViewController: UIViewController {
         
         output.showFasting
             .map { !$0 }
-            .bind(to: fastingCountView.rx.isHidden)
+            .bind(to: fastingIndicatorView.rx.isHidden)
             .disposed(by: disposeBag)
         
         output.showFasting
@@ -94,20 +94,32 @@ class FastingViewController: UIViewController {
             .disposed(by: disposeBag)
         
         output.fasting
-            .map { $0.fastingDayCount }
-            .map { "\($0)일째 단식 중" }
-            .bind(to: fastingCountView.fastingCountLabel.rx.text)
+            .map { $0.startedAt.formatTime() }
+            .map { "시작 - \($0)" }
+            .bind(to: fastingIndicatorView.fastingStartedAtLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.fasting
+            .map { $0.endedAt.formatTime() }
+            .map { "종료 - \($0)" }
+            .bind(to: fastingIndicatorView.fastingEndedAtLabel.rx.text)
             .disposed(by: disposeBag)
         
         output.fastingStatusIndicatorText
             .bind(to: fastingCircleView.timerLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.fasting
+            .map { $0.fastingDayCount }
+            .map { "\($0)일째 단식중" }
+            .bind(to: fastingCircleView.fastingCountLabel.rx.text)
             .disposed(by: disposeBag)
     }
 
     private func setupUI() {
         view.backgroundColor = .systemBackground
         view.addSubview(todayIndicator)
-        view.addSubview(fastingCountView)
+        view.addSubview(fastingIndicatorView)
         view.addSubview(fastingCircleView)
         view.addSubview(startFastingButton)
         view.addSubview(endFastingButton)
@@ -119,14 +131,14 @@ class FastingViewController: UIViewController {
             make.height.equalTo(140)
         }
         
-        fastingCountView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(40)
+        fastingIndicatorView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(60)
             make.top.equalTo(todayIndicator.snp.bottom).offset(30)
             make.height.equalTo(70)
         }
         
         fastingCircleView.snp.makeConstraints { make in
-            make.top.equalTo(fastingCountView.snp.bottom)
+            make.top.equalTo(fastingIndicatorView.snp.bottom)
             make.leading.trailing.equalToSuperview().inset(30)
             make.bottom.equalTo(startFastingButton.snp.top)
         }
