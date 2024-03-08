@@ -53,4 +53,12 @@ class FastingCoordinator: Coordinator {
         vc.viewModel = viewModel
         navigationController.pushViewController(vc, animated: true)
     }
+    
+    func pushToRecipeDetailsVC(_ recipe: Recipe) {
+        let vc = RecipeDetailsViewController()
+        let viewModel = RecipeDetailsViewModel(recipe: recipe)
+        viewModel.coordinator = self
+        vc.viewModel = viewModel
+        navigationController.pushViewController(vc, animated: true)
+    }
 }

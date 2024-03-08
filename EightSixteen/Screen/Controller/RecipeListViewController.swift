@@ -65,7 +65,8 @@ class RecipeListViewController: UIViewController {
     
     private func bindViewModel() {
         let input = RecipeListViewModel.Input(
-            recipeCollecionViewReachedBottom: recipeCollectionView.rx.reachedBottom.asObservable()
+            recipeCollecionViewReachedBottom: recipeCollectionView.rx.reachedBottom.asObservable(),
+            recipeSelected: recipeCollectionView.rx.modelSelected(Recipe.self).asObservable()
         )
         let output = viewModel.transform(input)
         
@@ -76,7 +77,7 @@ class RecipeListViewController: UIViewController {
         output.recipes
             .bind(to: recipeCollectionView.rx.items(cellIdentifier: RecipeCollectionViewCell.identifier, cellType: RecipeCollectionViewCell.self)) {
                 idx, recipe, cell in
-                cell.configure(imageUrl: recipe.httpsThumbnailUrl, name: recipe.name, category: recipe.category)
+                cell.configure(imageUrl: recipe.thumbnailUrl.httpsURL(), name: recipe.name, category: recipe.category)
             }
             .disposed(by: disposeBag)
         

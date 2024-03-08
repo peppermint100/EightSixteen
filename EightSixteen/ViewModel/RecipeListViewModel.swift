@@ -14,8 +14,8 @@ class RecipeListViewModel {
     private let disposeBag = DisposeBag()
     
     private let pagingFrom = 1
-    private let pagingTo = 10
-    private let pagingStep = 7
+    private let pagingTo = 8
+    private let pagingStep = 6
     
     struct Input {
         let recipeCollecionViewReachedBottom: Observable<Void>
