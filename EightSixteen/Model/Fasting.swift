@@ -39,17 +39,26 @@ struct Fasting: Codable {
     var fastingTimeRemaining: TimeInterval {
         let now = Date()
         let nowHour = Calendar.current.component(.hour, from: now)
+        let nowMinutes = Calendar.current.component(.minute, from: now)
+        let endedAtHour = Calendar.current.component(.hour, from: endedAt)
+        let endedAtMinutes = Calendar.current.component(.minute, from: endedAt)
+        
+        if endedAtHour == nowHour {
+            let offset = endedAtMinutes - nowMinutes
+            if offset > 0 {
+                return TimeInterval(offset * 60)
+            }
+        }
+        
         if !fastingHoursRange.contains(nowHour) {
             return 0
         }
         
+        let startedAtMinutes = Calendar.current.component(.minute, from: startedAt)
         let nowIndex = fastingHoursRange.firstIndex(of: nowHour)!
         let hours = fastingHoursRange.count - nowIndex - 1
-        let nowMinutes = Calendar.current.component(.minute, from: now)
         let nowSeconds = Calendar.current.component(.second, from: now)
-        let startedAtMinutes = Calendar.current.component(.minute, from: startedAt)
         let startedAtSeconds = Calendar.current.component(.second, from: startedAt)
-        
         let minutesToSeconds = startedAtMinutes == 0 ? (60 - nowMinutes) * 60 : (60 - (nowMinutes % startedAtMinutes)) * 60
         let seconds = startedAtSeconds == 0 ? (60 - nowSeconds) : 60 - (nowSeconds % startedAtSeconds)
         

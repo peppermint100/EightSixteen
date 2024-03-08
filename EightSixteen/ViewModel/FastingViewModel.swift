@@ -49,12 +49,12 @@ class FastingViewModel {
             timerSeconds = BehaviorSubject(value: TimeInterval(Fasting.defaultFastingHours * 3600))
         }
         
-        configureBarButtonItem(input.barButtonItemTapped, fastingObservable, showFasting: showFastingObservable)
         configureRecipeListBarButtonTapped(input.recipeListBarButtonTapped)
         configureStartFastingButtonTapped(input.startFastingButtonTapped, showFastingObservable, fastingSubject: fastingObservable, timerSeconds: timerSeconds)
         configureEndFastingButton(input.endFastingButtonTapped, showFasting: showFastingObservable)
         configureFastingStatusIndicatorText(timerSeconds: timerSeconds, text: fastingStatusIndicatorText)
         configureTimer(showFastingObservable, timerSeconds: timerSeconds)
+        configureBarButtonItem(input.barButtonItemTapped, fastingObservable, showFasting: showFastingObservable)
         
         let output = FastingViewModel.Output(
             showFasting: showFastingObservable,
