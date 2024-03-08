@@ -12,7 +12,6 @@ import RxCocoa
 extension Reactive where Base: UIScrollView {
     public var reachedBottom: ControlEvent<Void> {
         let event = base.rx.contentOffset
-            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .flatMap { [weak base] contentOffset -> Observable<Void> in
                 guard let scrollView = base else {
                     return Observable.empty()
