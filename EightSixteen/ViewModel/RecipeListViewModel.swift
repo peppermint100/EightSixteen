@@ -37,7 +37,6 @@ class RecipeListViewModel {
         let recipePagingFrom = BehaviorRelay(value: pagingFrom)
         let recipePagingTo = BehaviorRelay(value: pagingTo)
         
-//        configureDummyRecipes(recipes, isFetchingRecipes)
         configureRecipesPaging(isFetchingMoreRecipes, recipes, recipePagingFrom, recipePagingTo)
         configureRecipeCollectionViewReachedBottom(input.recipeCollecionViewReachedBottom, recipePagingFrom, recipePagingTo)
         configureRecipes(recipes, isFetchingRecipes)
@@ -96,35 +95,6 @@ class RecipeListViewModel {
         .disposed(by: disposeBag)
     }
         
-    private func configureDummyRecipes(_ recipes: BehaviorRelay<[Recipe]>, _ isFetching: BehaviorSubject<Bool>) {
-        var _recipes: [Recipe] = []
-        for _ in 0..<20 {
-            let recipe = Recipe(
-                thumbnailUrl: "http://www.foodsafetykorea.go.kr/uploadimg/20230206/20230206054834_1675673314720.jpg",
-                material: "재료",
-                way: "조리법",
-                category: "굽기",
-                natrium: "24",
-                protein: "35",
-                fat: "30",
-                calories: "120",
-                carbohydrate: "100",
-                name: "레시피 이름",
-                tip: "팁 이런저런 팁 이런저럽 팁 이런저럽 팁 이런 저런 팁들 이런 저런 팁 들이 있다.",
-                manualImage01URL: "http://www.foodsafetykorea.go.kr/uploadimg/20230206/20230206054834_1675673314720.jpg",
-                manualImage02URL: "http://www.foodsafetykorea.go.kr/uploadimg/20230206/20230206054834_1675673314720.jpg",
-                manualImage03URL: "http://www.foodsafetykorea.go.kr/uploadimg/20230206/20230206054834_1675673314720.jpg",
-                manualDesc01: "조리 설명 1",
-                manualDesc02: "조리 설명 2",
-                manualDesc03: "조리 설명 3"
-            )
-            _recipes.append(recipe)
-        }
-        
-        recipes.accept(_recipes)
-        isFetching.onNext(false)
-    }
-    
     private func configureRecipes(
         _ recipes: BehaviorRelay<[Recipe]>,
         _ isFetching: BehaviorSubject<Bool>

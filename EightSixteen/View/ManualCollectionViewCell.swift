@@ -9,7 +9,17 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class ManualStepView: UIStackView {
+class ManualCollectionViewCell: UICollectionViewCell {
+    
+    static let identifier = "ManualCollectionViewCell"
+    
+    private let containerView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .horizontal
+        sv.distribution = .fill
+        sv.spacing = 8
+        return sv
+    }()
     
     private let manualDescLabel: UILabel = {
         let label = UILabel()
@@ -27,16 +37,18 @@ class ManualStepView: UIStackView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        axis = .horizontal
-        distribution = .fill
-        spacing = 8
         
-        addArrangedSubview(manualDescLabel)
-        addArrangedSubview(manualImageView)
+        contentView.addSubview(containerView)
+
+        containerView.addArrangedSubview(manualDescLabel)
+        containerView.addArrangedSubview(manualImageView)
+        
+        containerView.snp.makeConstraints { make in
+            make.edges.equalTo(contentView).inset(30)
+        }
         
         manualImageView.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.4)
-            make.top.bottom.equalToSuperview()
+            make.width.equalTo(containerView.snp.width).multipliedBy(0.4)
         }
     }
     

@@ -35,8 +35,11 @@
 		BA8EFF792B9B16CB006B647C /* SettingViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8EFF782B9B16CB006B647C /* SettingViewPresenter.swift */; };
 		BA8EFF7B2B9B2223006B647C /* SettingSwtichTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8EFF7A2B9B2223006B647C /* SettingSwtichTableViewCell.swift */; };
 		BA8EFF7D2B9C194D006B647C /* SettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8EFF7C2B9C194D006B647C /* SettingManager.swift */; };
+		BA8EFF802B9C2DD6006B647C /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8EFF7F2B9C2DD6006B647C /* Recipe.swift */; };
+		BA8EFF822B9C2DEC006B647C /* RecipeManual.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8EFF812B9C2DEC006B647C /* RecipeManual.swift */; };
+		BA8EFF842B9C61FB006B647C /* RecipeDetailCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8EFF832B9C61FB006B647C /* RecipeDetailCollectionHeaderView.swift */; };
 		BA98BE752B99BC25003C570B /* NutritionLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA98BE742B99BC25003C570B /* NutritionLabelView.swift */; };
-		BA98BE772B99F8A5003C570B /* ManualStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA98BE762B99F8A5003C570B /* ManualStepView.swift */; };
+		BA98BE772B99F8A5003C570B /* ManualCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA98BE762B99F8A5003C570B /* ManualCollectionViewCell.swift */; };
 		BA98BE792B99FAEF003C570B /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA98BE782B99FAEF003C570B /* String+URL.swift */; };
 		BA9B05BD2B81B0B6000B603B /* FastingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9B05BC2B81B0B6000B603B /* FastingViewModel.swift */; };
 		BA9B05BF2B81C5F7000B603B /* FastingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9B05BE2B81C5F7000B603B /* FastingIndicatorView.swift */; };
@@ -81,8 +84,11 @@
 		BA8EFF782B9B16CB006B647C /* SettingViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewPresenter.swift; sourceTree = "<group>"; };
 		BA8EFF7A2B9B2223006B647C /* SettingSwtichTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSwtichTableViewCell.swift; sourceTree = "<group>"; };
 		BA8EFF7C2B9C194D006B647C /* SettingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingManager.swift; sourceTree = "<group>"; };
+		BA8EFF7F2B9C2DD6006B647C /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		BA8EFF812B9C2DEC006B647C /* RecipeManual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeManual.swift; sourceTree = "<group>"; };
+		BA8EFF832B9C61FB006B647C /* RecipeDetailCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailCollectionHeaderView.swift; sourceTree = "<group>"; };
 		BA98BE742B99BC25003C570B /* NutritionLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionLabelView.swift; sourceTree = "<group>"; };
-		BA98BE762B99F8A5003C570B /* ManualStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualStepView.swift; sourceTree = "<group>"; };
+		BA98BE762B99F8A5003C570B /* ManualCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualCollectionViewCell.swift; sourceTree = "<group>"; };
 		BA98BE782B99FAEF003C570B /* String+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+URL.swift"; sourceTree = "<group>"; };
 		BA9B05BC2B81B0B6000B603B /* FastingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingViewModel.swift; sourceTree = "<group>"; };
 		BA9B05BE2B81C5F7000B603B /* FastingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingIndicatorView.swift; sourceTree = "<group>"; };
@@ -188,6 +194,8 @@
 				BA9B05C02B81C707000B603B /* Fasting.swift */,
 				BA17DD5C2B8EDFEF009572BE /* FastingManager.swift */,
 				BA8EFF7C2B9C194D006B647C /* SettingManager.swift */,
+				BA8EFF7F2B9C2DD6006B647C /* Recipe.swift */,
+				BA8EFF812B9C2DEC006B647C /* RecipeManual.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -213,8 +221,9 @@
 				BA65302A2B91E9C0006E7C59 /* ESAppPickerTextField.swift */,
 				BA182F1F2B985EE300B9AE49 /* RecipeCollectionViewCell.swift */,
 				BA98BE742B99BC25003C570B /* NutritionLabelView.swift */,
-				BA98BE762B99F8A5003C570B /* ManualStepView.swift */,
+				BA98BE762B99F8A5003C570B /* ManualCollectionViewCell.swift */,
 				BA8EFF7A2B9B2223006B647C /* SettingSwtichTableViewCell.swift */,
+				BA8EFF832B9C61FB006B647C /* RecipeDetailCollectionHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -395,6 +404,7 @@
 			files = (
 				BA98BE792B99FAEF003C570B /* String+URL.swift in Sources */,
 				BA4ED28A2B80E1280056B8F8 /* FastingViewController.swift in Sources */,
+				BA8EFF842B9C61FB006B647C /* RecipeDetailCollectionHeaderView.swift in Sources */,
 				BA17DD5D2B8EDFEF009572BE /* FastingManager.swift in Sources */,
 				BA9B05BD2B81B0B6000B603B /* FastingViewModel.swift in Sources */,
 				BA21D6432B9991770072C87D /* RecipeDetailsViewController.swift in Sources */,
@@ -410,11 +420,13 @@
 				BA4ED2852B80E0700056B8F8 /* Coordinator.swift in Sources */,
 				BA8EFF7B2B9B2223006B647C /* SettingSwtichTableViewCell.swift in Sources */,
 				BA65302B2B91E9C1006E7C59 /* ESAppPickerTextField.swift in Sources */,
+				BA8EFF822B9C2DEC006B647C /* RecipeManual.swift in Sources */,
 				BA98BE752B99BC25003C570B /* NutritionLabelView.swift in Sources */,
 				BAB816D62B9059DE0096EDE1 /* FastingComposeViewModel.swift in Sources */,
 				BA9B05C12B81C707000B603B /* Fasting.swift in Sources */,
 				BA17DD602B8EE030009572BE /* UserDefaultsKey.swift in Sources */,
 				BA65302D2B920615006E7C59 /* Picker.swift in Sources */,
+				BA8EFF802B9C2DD6006B647C /* Recipe.swift in Sources */,
 				BA21D6452B99922E0072C87D /* RecipeDetailsViewModel.swift in Sources */,
 				BA1886D22B81E21B007F8166 /* FastingCircleProgressView.swift in Sources */,
 				BA4ED2872B80E0BD0056B8F8 /* AppCoordinator.swift in Sources */,
@@ -426,7 +438,7 @@
 				BA809C1F2B96D69700CA8EE4 /* TimerInterval.swift in Sources */,
 				BA4F31E32B9755D100C57E06 /* Notification.swift in Sources */,
 				BAB816D82B9063C50096EDE1 /* ESAppButton.swift in Sources */,
-				BA98BE772B99F8A5003C570B /* ManualStepView.swift in Sources */,
+				BA98BE772B99F8A5003C570B /* ManualCollectionViewCell.swift in Sources */,
 				BAB816D42B9056BA0096EDE1 /* FastingComposeViewController.swift in Sources */,
 				BA4ED26E2B80B00E0056B8F8 /* SceneDelegate.swift in Sources */,
 			);
