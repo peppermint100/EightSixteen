@@ -20,7 +20,7 @@ class SettingSwtichTableViewCell: UITableViewCell {
     
     private let iconContainer: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = 8
         view.clipsToBounds = true
         return view
     }()

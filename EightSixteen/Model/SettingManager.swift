@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UserNotifications
 
 class SettingManager {
     
@@ -23,7 +24,16 @@ class SettingManager {
         return defaults.bool(forKey: UserDefaultsKey.allowNotification.rawValue)
     }
     
-    func setAllowNotification(_ value: Bool) {
-        defaults.set(value, forKey: UserDefaultsKey.allowNotification.rawValue)
+    func setAllowNotification(_ allow: Bool) {
+        defaults.set(allow, forKey: UserDefaultsKey.allowNotification.rawValue)
+        
+        if allow {
+            if let fasting = FastingManager.shared.load() {
+                fasting.registerNotifications()
+            }
+        } else {
+            let notificationCenter = UNUserNotificationCenter.current()
+            notificationCenter.removePendingNotificationRequests(withIdentifiers: [NotificationKey.fastingStart.rawValue, NotificationKey.fastingEnd.rawValue])
+        }
     }
 }

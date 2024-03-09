@@ -127,7 +127,7 @@ class FastingViewModel {
                 timerSeconds.onNext(fasting.fastingTimeRemaining)
                 showFasting.onNext(fastingCreated)
                 fastingSubject.onNext(fasting)
-                self?.registerNotification(fasting)
+                fasting.registerNotifications()
             }
         })
         .disposed(by: disposeBag)
@@ -173,39 +173,5 @@ class FastingViewModel {
                 return
             }
         }
-    }
-    
-    private func registerNotification(_ fasting: Fasting) {
-        checkNotificationPermission()
-        
-        let notificationCenter = UNUserNotificationCenter.current()
-        let calendar = Calendar.current
-        let startTitle = "단식이 시작되었습니다."
-        let startBody = "단식을 유지하되 무리하지 마세요!"
-        let startDateComponent = calendar.dateComponents([.hour, .minute], from: fasting.startedAt)
-        
-        let endTitle = "단식이 종료되었습니다."
-        let endBody = "식사 맛있게 하세요!"
-        let endDateComponent = calendar.dateComponents([.hour, .minute], from: fasting.endedAt)
-        
-        let startContent = UNMutableNotificationContent()
-        startContent.title = startTitle
-        startContent.body = startBody
-        startContent.sound = .default
-        
-        let endContent = UNMutableNotificationContent()
-        endContent.title = endTitle
-        endContent.body = endBody
-        endContent.sound = .default
-        
-        let startTrigger = UNCalendarNotificationTrigger(dateMatching: startDateComponent, repeats: true)
-        let endTrigger = UNCalendarNotificationTrigger(dateMatching: endDateComponent, repeats: true)
-        
-        let startRequest = UNNotificationRequest(identifier: NotificationKey.fastingStart.rawValue, content: startContent, trigger: startTrigger)
-        let endRequest = UNNotificationRequest(identifier: NotificationKey.fastingEnd.rawValue, content: endContent, trigger: endTrigger)
-        
-        notificationCenter.removePendingNotificationRequests(withIdentifiers: [NotificationKey.fastingStart.rawValue, NotificationKey.fastingEnd.rawValue])
-        notificationCenter.add(startRequest)
-        notificationCenter.add(endRequest)
     }
 }
