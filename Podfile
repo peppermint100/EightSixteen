@@ -11,4 +11,5 @@ target 'EightSixteen' do
   pod 'Action'
   pod 'Alamofire', '~> 5.2'
   pod 'Kingfisher', '~> 5.0'
+  pod 'RxDataSources', '~> 5.0'
 end
