@@ -29,6 +29,7 @@ class ManualStepView: UIStackView {
         super.init(frame: frame)
         axis = .horizontal
         distribution = .fill
+        spacing = 8
         
         addArrangedSubview(manualDescLabel)
         addArrangedSubview(manualImageView)

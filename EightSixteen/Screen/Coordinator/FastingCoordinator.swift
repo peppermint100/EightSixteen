@@ -61,4 +61,9 @@ class FastingCoordinator: Coordinator {
         vc.viewModel = viewModel
         navigationController.pushViewController(vc, animated: true)
     }
+    
+    func pushToSettingVC() {
+        let vc = SettingViewController()
+        navigationController.pushViewController(vc, animated: true)
+    }
 }

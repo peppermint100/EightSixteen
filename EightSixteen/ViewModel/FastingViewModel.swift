@@ -21,7 +21,7 @@ class FastingViewModel {
         let startFastingButtonTapped: Observable<Void>
         let endFastingButtonTapped: Observable<Void>
         let recipeListBarButtonTapped: Observable<Void>
-        let barButtonItemTapped: Observable<Void>
+        let settingBarButtonTapped: Observable<Void>
     }
     
     struct Output {
@@ -50,11 +50,11 @@ class FastingViewModel {
         }
         
         configureRecipeListBarButtonTapped(input.recipeListBarButtonTapped)
+        configureSettingBarButtonTapped(input.settingBarButtonTapped)
         configureStartFastingButtonTapped(input.startFastingButtonTapped, showFastingObservable, fastingSubject: fastingObservable, timerSeconds: timerSeconds)
         configureEndFastingButton(input.endFastingButtonTapped, showFasting: showFastingObservable)
         configureFastingStatusIndicatorText(timerSeconds: timerSeconds, text: fastingStatusIndicatorText)
         configureTimer(showFastingObservable, timerSeconds: timerSeconds)
-        configureBarButtonItem(input.barButtonItemTapped, fastingObservable, showFasting: showFastingObservable)
         
         let output = FastingViewModel.Output(
             showFasting: showFastingObservable,
@@ -63,6 +63,14 @@ class FastingViewModel {
         )
         
         return output
+    }
+    
+    private func configureSettingBarButtonTapped(_ tapped: Observable<Void>) {
+        tapped
+            .subscribe(onNext: { [weak self] in
+                self?.coordinator?.pushToSettingVC()
+            })
+            .disposed(by: disposeBag)
     }
     
     private func configureRecipeListBarButtonTapped(_ tapped: Observable<Void>) {
@@ -106,18 +114,6 @@ class FastingViewModel {
                 }
                 self?.timer?.resume()
             }
-        })
-        .disposed(by: disposeBag)
-    }
-    
-    private func configureBarButtonItem(_ tapped: Observable<Void>, _ fasting: Observable<Fasting>, showFasting: BehaviorSubject<Bool>) {
-        tapped.subscribe(onNext: { [weak self] _ in
-            var fasting = FastingManager.shared.load()
-            print(fasting?.startedAt.addingTimeInterval(3600*9))
-            print("endedAt= ", fasting?.endedAt.addingTimeInterval(3600 * 9))
-            print("hours = ", fasting?.fastingTimeHours)
-            print("ratio = ", fasting?.fastingRatio)
-            print("remaning = ", fasting?.fastingTimeRemaining)
         })
         .disposed(by: disposeBag)
     }

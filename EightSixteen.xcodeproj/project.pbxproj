@@ -31,6 +31,10 @@
 		BA65302B2B91E9C1006E7C59 /* ESAppPickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA65302A2B91E9C0006E7C59 /* ESAppPickerTextField.swift */; };
 		BA65302D2B920615006E7C59 /* Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA65302C2B920615006E7C59 /* Picker.swift */; };
 		BA809C1F2B96D69700CA8EE4 /* TimerInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA809C1E2B96D69700CA8EE4 /* TimerInterval.swift */; };
+		BA8EFF772B9B13F6006B647C /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8EFF762B9B13F6006B647C /* SettingViewController.swift */; };
+		BA8EFF792B9B16CB006B647C /* SettingViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8EFF782B9B16CB006B647C /* SettingViewPresenter.swift */; };
+		BA8EFF7B2B9B2223006B647C /* SettingSwtichTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8EFF7A2B9B2223006B647C /* SettingSwtichTableViewCell.swift */; };
+		BA8EFF7D2B9C194D006B647C /* SettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8EFF7C2B9C194D006B647C /* SettingManager.swift */; };
 		BA98BE752B99BC25003C570B /* NutritionLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA98BE742B99BC25003C570B /* NutritionLabelView.swift */; };
 		BA98BE772B99F8A5003C570B /* ManualStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA98BE762B99F8A5003C570B /* ManualStepView.swift */; };
 		BA98BE792B99FAEF003C570B /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA98BE782B99FAEF003C570B /* String+URL.swift */; };
@@ -73,6 +77,10 @@
 		BA65302A2B91E9C0006E7C59 /* ESAppPickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESAppPickerTextField.swift; sourceTree = "<group>"; };
 		BA65302C2B920615006E7C59 /* Picker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picker.swift; sourceTree = "<group>"; };
 		BA809C1E2B96D69700CA8EE4 /* TimerInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerInterval.swift; sourceTree = "<group>"; };
+		BA8EFF762B9B13F6006B647C /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		BA8EFF782B9B16CB006B647C /* SettingViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewPresenter.swift; sourceTree = "<group>"; };
+		BA8EFF7A2B9B2223006B647C /* SettingSwtichTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSwtichTableViewCell.swift; sourceTree = "<group>"; };
+		BA8EFF7C2B9C194D006B647C /* SettingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingManager.swift; sourceTree = "<group>"; };
 		BA98BE742B99BC25003C570B /* NutritionLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionLabelView.swift; sourceTree = "<group>"; };
 		BA98BE762B99F8A5003C570B /* ManualStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualStepView.swift; sourceTree = "<group>"; };
 		BA98BE782B99FAEF003C570B /* String+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+URL.swift"; sourceTree = "<group>"; };
@@ -157,6 +165,7 @@
 		BA4ED26A2B80B00E0056B8F8 /* EightSixteen */ = {
 			isa = PBXGroup;
 			children = (
+				BA8EFF7E2B9C1A90006B647C /* Presenter */,
 				BAC2BB462B98157F00A2D4D6 /* Network */,
 				BA17DD5E2B8EE024009572BE /* Global */,
 				BA9B05C22B81C971000B603B /* Extension */,
@@ -178,6 +187,7 @@
 			children = (
 				BA9B05C02B81C707000B603B /* Fasting.swift */,
 				BA17DD5C2B8EDFEF009572BE /* FastingManager.swift */,
+				BA8EFF7C2B9C194D006B647C /* SettingManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -204,6 +214,7 @@
 				BA182F1F2B985EE300B9AE49 /* RecipeCollectionViewCell.swift */,
 				BA98BE742B99BC25003C570B /* NutritionLabelView.swift */,
 				BA98BE762B99F8A5003C570B /* ManualStepView.swift */,
+				BA8EFF7A2B9B2223006B647C /* SettingSwtichTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -233,8 +244,17 @@
 				BAB816D32B9056BA0096EDE1 /* FastingComposeViewController.swift */,
 				BAC2BB4A2B9816E100A2D4D6 /* RecipeListViewController.swift */,
 				BA21D6422B9991770072C87D /* RecipeDetailsViewController.swift */,
+				BA8EFF762B9B13F6006B647C /* SettingViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		BA8EFF7E2B9C1A90006B647C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BA8EFF782B9B16CB006B647C /* SettingViewPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		BA9B05C22B81C971000B603B /* Extension */ = {
@@ -381,12 +401,14 @@
 				BA21D63F2B9952050072C87D /* ScrollView+Rx.swift in Sources */,
 				BAC2BB4B2B9816E100A2D4D6 /* RecipeListViewController.swift in Sources */,
 				BA9B05BF2B81C5F7000B603B /* FastingIndicatorView.swift in Sources */,
+				BA8EFF7D2B9C194D006B647C /* SettingManager.swift in Sources */,
 				BAC2BB492B9815A100A2D4D6 /* RecipeResponse.swift in Sources */,
 				BA182F202B985EE300B9AE49 /* RecipeCollectionViewCell.swift in Sources */,
 				BA182F182B98372D00B9AE49 /* RecipeAPIManager.swift in Sources */,
 				BA1DF21A2B81A84B009AFB62 /* TodayIndicatorView.swift in Sources */,
 				BA4ED28C2B80E3B10056B8F8 /* FastingCoordinator.swift in Sources */,
 				BA4ED2852B80E0700056B8F8 /* Coordinator.swift in Sources */,
+				BA8EFF7B2B9B2223006B647C /* SettingSwtichTableViewCell.swift in Sources */,
 				BA65302B2B91E9C1006E7C59 /* ESAppPickerTextField.swift in Sources */,
 				BA98BE752B99BC25003C570B /* NutritionLabelView.swift in Sources */,
 				BAB816D62B9059DE0096EDE1 /* FastingComposeViewModel.swift in Sources */,
@@ -396,6 +418,8 @@
 				BA21D6452B99922E0072C87D /* RecipeDetailsViewModel.swift in Sources */,
 				BA1886D22B81E21B007F8166 /* FastingCircleProgressView.swift in Sources */,
 				BA4ED2872B80E0BD0056B8F8 /* AppCoordinator.swift in Sources */,
+				BA8EFF792B9B16CB006B647C /* SettingViewPresenter.swift in Sources */,
+				BA8EFF772B9B13F6006B647C /* SettingViewController.swift in Sources */,
 				BA9B05C42B81C97D000B603B /* Date.swift in Sources */,
 				BA182F1A2B983D2700B9AE49 /* RecipeListViewModel.swift in Sources */,
 				BA4ED26C2B80B00E0056B8F8 /* AppDelegate.swift in Sources */,

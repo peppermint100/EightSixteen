@@ -36,8 +36,12 @@ class FastingViewController: UIViewController {
         return button
     }()
     
-    private lazy var barButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: nil)
-
+    private lazy var settingBarButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: nil)
+        button.tintColor = .label
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -47,8 +51,7 @@ class FastingViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        navigationItem.rightBarButtonItems = [recipeListBarButton, barButtonItem]
-        barButtonItem.tintColor = .label
+        navigationItem.rightBarButtonItems = [settingBarButton, recipeListBarButton]
     }
     
     private func bindViewModel() {
@@ -56,7 +59,7 @@ class FastingViewController: UIViewController {
             startFastingButtonTapped: startFastingButton.rx.tap.asObservable(),
             endFastingButtonTapped: endFastingButton.rx.tap.asObservable(),
             recipeListBarButtonTapped: recipeListBarButton.rx.tap.asObservable(),
-            barButtonItemTapped: barButtonItem.rx.tap.asObservable()
+            settingBarButtonTapped: settingBarButton.rx.tap.asObservable()
         )
         
         let output = viewModel.transform(input)
