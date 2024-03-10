@@ -16,7 +16,7 @@ class SettingSwtichTableViewCell: UITableViewCell {
     
     static let identifier = "SettingSwtichTableViewCell"
     
-    var delegate: SettingSwitchTableViewCellDelegate?
+    weak var delegate: SettingSwitchTableViewCellDelegate?
     
     private let iconContainer: UIView = {
         let view = UIView()

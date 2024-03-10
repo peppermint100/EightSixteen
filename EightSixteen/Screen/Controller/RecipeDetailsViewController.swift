@@ -90,7 +90,7 @@ class RecipeDetailsViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.headerReferenceSize = CGSize(width: view.frame.width, height: 500)
-        layout.itemSize = CGSize(width: view.frame.width, height: 150)
+        layout.itemSize = CGSize(width: view.frame.width, height: 180)
         return layout
     }
 }
