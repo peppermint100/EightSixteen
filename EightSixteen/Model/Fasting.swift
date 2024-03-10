@@ -81,6 +81,7 @@ struct Fasting: Codable {
     
     func registerNotifications() {
         let notificationCenter = UNUserNotificationCenter.current()
+        
         let calendar = Calendar.current
         let startTitle = "단식이 시작되었습니다."
         let startBody = "단식을 유지하되 무리하지 마세요!"

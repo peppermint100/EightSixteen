@@ -127,7 +127,9 @@ class FastingViewModel {
                 timerSeconds.onNext(fasting.fastingTimeRemaining)
                 showFasting.onNext(fastingCreated)
                 fastingSubject.onNext(fasting)
-                fasting.registerNotifications()
+                if SettingManager.shared.getAllowNotification() {
+                    fasting.registerNotifications()
+                }
             }
         })
         .disposed(by: disposeBag)

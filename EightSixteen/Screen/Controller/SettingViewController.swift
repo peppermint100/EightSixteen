@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import UserNotifications
 
 
 class SettingViewController: UIViewController {
