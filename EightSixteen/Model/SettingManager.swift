@@ -28,7 +28,7 @@ class SettingManager {
         defaults.set(allow, forKey: UserDefaultsKey.allowNotification.rawValue)
         
         if allow {
-            if let fasting = FastingManager.shared.load() {
+            if let fasting = Fasting.load() {
                 fasting.registerNotifications()
             }
         } else {

@@ -67,7 +67,7 @@ class FastingComposeViewModel {
     }
     
     private func startFasting(_ fasting: Fasting) {
-        FastingManager.shared.save(fasting)
+        fasting.start()
         onDismiss(true, fasting)
         coordinator?.dismissByStartFastingButton()
     }

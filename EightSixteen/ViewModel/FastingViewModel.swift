@@ -33,7 +33,7 @@ class FastingViewModel {
     func transform(_ input: Input) -> Output {
         checkNotificationPermission()
         
-        let fasting = FastingManager.shared.load()
+        let fasting = Fasting.load()
         let showFastingObservable = BehaviorSubject(value: fasting != nil)
         let fastingObservable: BehaviorSubject<Fasting>
         let timerSeconds: BehaviorSubject<TimeInterval>
@@ -149,7 +149,7 @@ class FastingViewModel {
         let notificationCenter = UNUserNotificationCenter.current()
         timer?.cancel()
         timer = nil
-        FastingManager.shared.clear()
+        Fasting.clear()
         notificationCenter.removePendingNotificationRequests(withIdentifiers: [NotificationKey.fastingStart.rawValue, NotificationKey.fastingEnd.rawValue])
         showFasting.onNext(false)
     }

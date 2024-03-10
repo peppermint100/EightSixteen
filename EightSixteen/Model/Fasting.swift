@@ -11,6 +11,19 @@ import UserNotifications
 struct Fasting: Codable {
     static let defaultFastingHours = 16
     
+    static func load() -> Fasting? {
+        if
+            let decoded = UserDefaults.standard.data(forKey: UserDefaultsKey.fasting.rawValue),
+            let fasting = try? JSONDecoder().decode(Fasting.self, from: decoded) {
+            return fasting
+        }
+        return nil
+    }
+    
+    static func clear() {
+        UserDefaults.standard.set(nil, forKey: UserDefaultsKey.fasting.rawValue)
+    }
+    
     var startedAt: Date
     var fastingTimeHours: Int
     
@@ -77,6 +90,17 @@ struct Fasting: Codable {
     var fastingRatio: Double {
         let fastingTimeProgressed = Double(fastingTimeHours * 3600) - fastingTimeRemaining
         return fastingTimeProgressed / Double(fastingTimeHours * 3600)
+    }
+    
+    func start() {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(self) {
+            UserDefaults.standard.set(encoded, forKey: UserDefaultsKey.fasting.rawValue)
+        }
+        
+        if SettingManager.shared.getAllowNotification() {
+            registerNotifications()
+        }
     }
     
     func registerNotifications() {
