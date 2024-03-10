@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import UserNotifications
 
 class FastingViewController: UIViewController {
     
@@ -47,6 +48,7 @@ class FastingViewController: UIViewController {
         setupUI()
         setupNavigationBar()
         setupTodayIndicator()
+        checkNotificationPermission()
         bindViewModel()
     }
     
@@ -167,5 +169,28 @@ class FastingViewController: UIViewController {
     
     private func setupTodayIndicator() {
         self.todayIndicator.today = Date()
+    }
+    
+    private func checkNotificationPermission() {
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .authorized:
+                return
+            case .notDetermined:
+                notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) { allowed, error in
+                    guard error == nil else {
+                        print("Error occured")
+                        return
+                    }
+                }
+                return
+            case .denied:
+                return
+            default:
+                print("Default")
+                return
+            }
+        }
     }
 }

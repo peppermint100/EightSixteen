@@ -21,7 +21,9 @@ struct Fasting: Codable {
     }
     
     static func clear() {
+        let notificationCenter = UNUserNotificationCenter.current()
         UserDefaults.standard.set(nil, forKey: UserDefaultsKey.fasting.rawValue)
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: [NotificationKey.fastingStart.rawValue, NotificationKey.fastingEnd.rawValue])
     }
     
     var startedAt: Date

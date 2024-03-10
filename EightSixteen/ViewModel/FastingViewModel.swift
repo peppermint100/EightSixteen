@@ -9,7 +9,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Action
-import UserNotifications
 
 class FastingViewModel {
     
@@ -31,8 +30,6 @@ class FastingViewModel {
     }
     
     func transform(_ input: Input) -> Output {
-        checkNotificationPermission()
-        
         let fasting = Fasting.load()
         let showFastingObservable = BehaviorSubject(value: fasting != nil)
         let fastingObservable: BehaviorSubject<Fasting>
@@ -146,34 +143,9 @@ class FastingViewModel {
     }
     
     private func endFasting(_ showFasting: BehaviorSubject<Bool>) {
-        let notificationCenter = UNUserNotificationCenter.current()
         timer?.cancel()
         timer = nil
         Fasting.clear()
-        notificationCenter.removePendingNotificationRequests(withIdentifiers: [NotificationKey.fastingStart.rawValue, NotificationKey.fastingEnd.rawValue])
         showFasting.onNext(false)
-    }
-    
-    private func checkNotificationPermission() {
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.getNotificationSettings { settings in
-            switch settings.authorizationStatus {
-            case .authorized:
-                return
-            case .notDetermined:
-                notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) { allowed, error in
-                    guard error == nil else {
-                        print("Error occured")
-                        return
-                    }
-                }
-                return
-            case .denied:
-                return
-            default:
-                print("Default")
-                return
-            }
-        }
     }
 }
