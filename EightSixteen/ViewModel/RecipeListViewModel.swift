@@ -55,7 +55,6 @@ class RecipeListViewModel {
             return (from, to)
         }
         .filter { $0.0 > 1 }
-        .throttle(.seconds(1), scheduler: MainScheduler.instance)
         .subscribe(onNext: { page in
             isFetching.onNext(true)
             let from = page.0
@@ -87,6 +86,7 @@ class RecipeListViewModel {
     
     private func configureRecipeCollectionViewReachedBottom(_ reachedBottom: Observable<Void>, _ from: BehaviorRelay<Int>, _ to: BehaviorRelay<Int>) {
         reachedBottom
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 guard let pagingStep = self?.pagingStep else { return }
                 from.accept(to.value + 1)
