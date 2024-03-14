@@ -62,3 +62,14 @@ MVVM 패턴을 채용하였으며, ViewModel의 바인딩에 RxSwift를 이용�
 
 ### Fastlane
 > 개발 후 Testflight에 수동으로 설정하여 배포하는 과정을 Fastlane을 이용하여 자동화하였습니다. 제한적인 cert & sigh 인증 방식이 아니라 여러 개발자가 협업하기에 적절한 Match 방식으로 인증하는 방법을 채택하여 Fastlane을 구성하였습니다.
+
+### XCode Instruments
+> ARC의 Strong Capturing으로 인한 Retain Cycle을 확인하고 수정 후 메모리가 정상적으로 동작하는 부분을 Xcode Instruments와 Debugg Session
+으로 확인하였습니다.
+
+# 블로그 작성
+개발을 진행하며 배운 내용 중 공유하고 싶은 내용을 블로그에 작성하였습니다.
+
+[XCode Instruments로 메모리 릭 확인하기](https://medium.com/peppermint100/xcode-instruments%EB%A1%9C-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AD-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0-a1da64c87466)
+
+[Fastlane으로 TestFlight에 앱 업로드하기](https://medium.com/peppermint100/fastlane%EC%9C%BC%EB%A1%9C-testflight%EC%97%90-%EC%95%B1-%EC%97%85%EB%A1%9C%EB%93%9C%ED%95%98%EA%B8%B0-9220cbe08056)
